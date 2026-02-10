@@ -1,4 +1,4 @@
-# [wazoo.dev](https://wazoo.dev/)
+# [wazoo.dev](https://wazoo.dev/) (formerly wazoo.tech)
 
 You found Wazoo's official company website.
 
