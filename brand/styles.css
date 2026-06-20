@@ -83,8 +83,28 @@ pre {
   padding: 1.25rem 1.5rem;
   overflow-x: auto;
   margin: 1.25rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-subtle) var(--surface);
 }
 pre code { background: none; border: none; padding: 0; color: var(--text); font-size: 0.875rem; }
+
+/* Custom scrollbars for code blocks */
+pre::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+pre::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-radius: 0 0 6px 6px;
+}
+pre::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+pre::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
 
 /* Layout */
 .content { max-width: 72ch; margin: 0 auto; padding: 4rem 2rem 6rem; }
