@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Guidelines — Wazoo</title>
+  <meta name="description" content="Official Wazoo visual identity, color, typography, motion, and design assets.">
+  <link rel="icon" type="image/svg+xml" href="assets/common/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles/main.css">
+  <style>
+    /* Custom adjustments for consolidated page */
+    html {
+      scroll-padding-top: 80px; /* Offset sticky header */
+    }
+    .section-anchor {
+      margin-top: 4rem;
+      border-top: 1px solid var(--border);
+      padding-top: 3rem;
+    }
+    .section-anchor:first-of-type {
+      margin-top: 1rem;
+      border-top: none;
+      padding-top: 0;
+    }
+    .nav-links a {
+      scroll-behavior: smooth;
+    }
+    .quick-reference-table td:first-child {
+      color: var(--text);
+      font-family: inherit;
+      font-size: inherit;
+    }
+  </style>
+</head>
+<body id="top">
+
+  <!-- Header Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="assets/light/wazoo.svg">
+          <source media="(prefers-color-scheme: dark)" srcset="assets/dark/wazoo.svg">
+          <source srcset="assets/dark/wazoo.svg">
+          <img class="logo-img" src="assets/dark/wazoo.svg" alt="Wazoo Logo">
+        </picture>
+        <span class="logo-wordmark">Brand</span>
+      </a>
+      <button class="nav-toggle" id="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-links-container" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#colors">Colors</a></li>
+          <li><a href="#typography">Typography</a></li>
+          <li><a href="#motion">Motion</a></li>
+          <li><a href="#assets">Assets</a></li>
+          <li><a href="/" class="nav-github">wazoo.dev</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="content">
+
+    <!-- Section 1: Overview -->
+    <section id="overview" class="section-anchor">
+      <h1>Brand Guidelines</h1>
+      <p>A living reference for Wazoo's visual identity — colors, typography, motion, and design assets.</p>
+      
+      <p>This page serves as a unified system specification. For automated coding assistants and agents, Wazoo maintains a machine-readable <a href="/DESIGN.md" style="font-weight: 600;">DESIGN.md</a> at the root of the project.</p>
+
+      <h2>Quick reference</h2>
+      <table class="quick-reference-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary</td>
+            <td><code>#FF9800</code></td>
+          </tr>
+          <tr>
+            <td>Background</td>
+            <td><code>#040404</code></td>
+          </tr>
+          <tr>
+            <td>Text</td>
+            <td><code>#B0B0B1</code></td>
+          </tr>
+          <tr>
+            <td>Font (body)</td>
+            <td>IBM Plex Mono</td>
+          </tr>
+          <tr>
+            <td>Font (headings)</td>
+            <td>Inter</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Usage policy</h2>
+      <p>All brand assets are the exclusive property of Wazoo, Inc. Use of these assets does not grant any intellectual property rights. Contact the Wazoo team for partnership or licensing inquiries.</p>
+    </section>
+
+    <!-- Section 2: Colors -->
+    <section id="colors" class="section-anchor">
+      <h2>Colors</h2>
+      <p>Official color tokens, palette, and usage rules.</p>
+
+      <h3>Primary</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Hex</th>
+            <th>RGB</th>
+            <th>Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>primary</code></td>
+            <td><code>#FF9800</code></td>
+            <td>rgb(255, 152, 0)</td>
+            <td>Primary brand accent; CTAs, links, hover states</td>
+          </tr>
+          <tr>
+            <td><code>primary-light</code></td>
+            <td><code>#FFB74D</code></td>
+            <td>rgb(255, 183, 77)</td>
+            <td>Light mode primary</td>
+          </tr>
+          <tr>
+            <td><code>primary-dark</code></td>
+            <td><code>#F57C00</code></td>
+            <td>rgb(245, 124, 0)</td>
+            <td>Dark/active states</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-color" style="background:#FF9800"></div><div class="swatch-info"><strong>Primary</strong><span>#FF9800</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFB74D"></div><div class="swatch-info"><strong>Primary Light</strong><span>#FFB74D</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#F57C00"></div><div class="swatch-info"><strong>Primary Dark</strong><span>#F57C00</span></div></div>
+      </div>
+
+      <h3>Background</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Hex</th>
+            <th>RGB</th>
+            <th>Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>void</code></td>
+            <td><code>#040404</code></td>
+            <td>rgb(4, 4, 4)</td>
+            <td>Default dark background</td>
+          </tr>
+          <tr>
+            <td><code>surface</code></td>
+            <td><code>#0F0F0F</code></td>
+            <td>rgb(15, 15, 15)</td>
+            <td>Cards, panels, elevated surfaces</td>
+          </tr>
+          <tr>
+            <td><code>light-bg</code></td>
+            <td><code>#FAFAF9</code></td>
+            <td>rgb(250, 250, 249)</td>
+            <td>Default light background</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-color" style="background:#040404;border:1px solid #222"></div><div class="swatch-info"><strong>Void</strong><span>#040404</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#0F0F0F"></div><div class="swatch-info"><strong>Surface</strong><span>#0F0F0F</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FAFAF9"></div><div class="swatch-info"><strong>Light BG</strong><span>#FAFAF9</span></div></div>
+      </div>
+
+      <h3>Text</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Hex</th>
+            <th>RGB</th>
+            <th>Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>text</code></td>
+            <td><code>#B0B0B1</code></td>
+            <td>rgb(176, 176, 177)</td>
+            <td>Body copy on dark backgrounds</td>
+          </tr>
+          <tr>
+            <td><code>text-muted</code></td>
+            <td><code>#7C7C7C</code></td>
+            <td>rgb(124, 124, 124)</td>
+            <td>Secondary text, captions</td>
+          </tr>
+          <tr>
+            <td><code>white</code></td>
+            <td><code>#FFFFFF</code></td>
+            <td>rgb(255, 255, 255)</td>
+            <td>Headings, high-contrast text</td>
+          </tr>
+          <tr>
+            <td><code>text-dark</code></td>
+            <td><code>#18181B</code></td>
+            <td>rgb(24, 24, 27)</td>
+            <td>Body copy on light backgrounds</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="swatch-grid">
+        <div class="swatch"><div class="swatch-color" style="background:#B0B0B1"></div><div class="swatch-info"><strong>Text</strong><span>#B0B0B1</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#7C7C7C"></div><div class="swatch-info"><strong>Text Muted</strong><span>#7C7C7C</span></div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#18181B"></div><div class="swatch-info"><strong>Text Dark</strong><span>#18181B</span></div></div>
+      </div>
+
+      <h3>Accents</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Hex</th>
+            <th>RGB</th>
+            <th>Use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>highlight</code></td>
+            <td><code>#FFAA00</code></td>
+            <td>rgb(255, 170, 0)</td>
+            <td>Highlight badges, quirky highlight</td>
+          </tr>
+          <tr>
+            <td><code>selection</code></td>
+            <td><code>#846CE4</code></td>
+            <td>rgb(132, 108, 228)</td>
+            <td>Text selection background</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Logo gradient</h3>
+      <p>The W mark inside the Worlds logo uses a layered semi-circle gradient:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>Colors</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Outer ring</td>
+            <td><code>#FFE599</code> → <code>#F1C232</code></td>
+            <td>Yellow semi-circles</td>
+          </tr>
+          <tr>
+            <td>W glyphs</td>
+            <td><code>#FF9800</code> (×3) + connecting stroke</td>
+            <td>Wazoo Orange</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Usage rules</h3>
+      <ul>
+        <li>Default dark background is <code>void</code> (<code>#040404</code>), not pure black.</li>
+        <li>Primary orange should appear on hover states and interactive elements.</li>
+        <li>Text should never be pure white on pure black — use <code>text</code> (<code>#B0B0B1</code>) for body.</li>
+        <li><code>magenta</code> and <code>cyan</code> glitch tokens are reserved for decorative effects only.</li>
+      </ul>
+    </section>
+
+    <!-- Section 3: Typography -->
+    <section id="typography" class="section-anchor">
+      <h2>Typography</h2>
+      <p>Official Wazoo typeface guidelines and type scale.</p>
+
+      <h3>Primary typefaces</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Font</th>
+            <th>Weights</th>
+            <th>Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Brand body</td>
+            <td><strong>IBM Plex Mono</strong></td>
+            <td>400, 500</td>
+            <td>Google Fonts</td>
+          </tr>
+          <tr>
+            <td>Brand headings</td>
+            <td><strong>Inter</strong></td>
+            <td>400, 600</td>
+            <td>System / Google Fonts</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>IBM Plex Mono</h3>
+      <p>Used for all brand body copy, code snippets, and marketing text. The monospace aesthetic reinforces the technical, developer-focused identity.</p>
+<pre><code>font-family: "IBM Plex Mono", monospace;
+font-weight: 400;
+letter-spacing: -0.025em;</code></pre>
+
+      <h3>Inter</h3>
+      <p>Used for the wordmark logotype and UI labels where a clean, modern sans-serif is needed.</p>
+<pre><code>font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+font-weight: 600;
+letter-spacing: -0.02em;</code></pre>
+
+      <h3>Type scale</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Size</th>
+            <th>Weight</th>
+            <th>Color</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>H1</td>
+            <td>2.5rem</td>
+            <td>600</td>
+            <td>white</td>
+          </tr>
+          <tr>
+            <td>H2</td>
+            <td>1.5rem</td>
+            <td>600</td>
+            <td>white</td>
+          </tr>
+          <tr>
+            <td>Body</td>
+            <td>1.0625rem</td>
+            <td>400</td>
+            <td>text</td>
+          </tr>
+          <tr>
+            <td>Caption</td>
+            <td>0.875rem</td>
+            <td>400</td>
+            <td>text-muted</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Usage rules</h3>
+      <ul>
+        <li>Body text should use <code>letter-spacing: -0.025em</code> for a tighter, modern feel.</li>
+        <li>Avoid more than 2 font weights in a single composition.</li>
+        <li>IBM Plex Mono is required for any code-adjacent content.</li>
+        <li>Inter is reserved for the wordmark and logo lockups only.</li>
+      </ul>
+    </section>
+
+    <!-- Section 4: Motion -->
+    <section id="motion" class="section-anchor">
+      <h2>Motion</h2>
+      <p>Animation and motion principles for the Wazoo brand.</p>
+
+      <h3>Guiding principles</h3>
+      <p>Wazoo's motion language has two modes:</p>
+      <ol>
+        <li><strong>Purposeful</strong> — Motion that communicates meaning (state changes, transitions, feedback)</li>
+        <li><strong>Quirky</strong> — Decorative micro-animations that express personality and differentiate the brand</li>
+      </</ol>
+
+      <h3>Core animations</h3>
+      
+      <h4>Fade in</h4>
+      <p>Default entrance for all content on dark backgrounds.</p>
+<pre><code>@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}</code></pre>
+
+      <h4>Logo rotate</h4>
+      <p>On hover, the W logo spins 360° with a cubic-bezier overshoot for a playful feel.</p>
+<pre><code>@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.logo-image:hover {
+  animation: rotate360 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}</code></pre>
+
+      <h3>Quirky animations</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Effect</th>
+            <th>Trigger</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>.quirk-highlight</code></td>
+            <td>Orange highlight rotates + scales</td>
+            <td>hover</td>
+          </tr>
+          <tr>
+            <td><code>.quirk-void</code></td>
+            <td>Text expands letter-spacing and blurs</td>
+            <td>hover</td>
+          </tr>
+          <tr>
+            <td><code>.quirk-breathe</code></td>
+            <td>Subtle scale + opacity pulse</td>
+            <td>auto (4s loop)</td>
+          </tr>
+          <tr>
+            <td><code>.quirk-glitch</code></td>
+            <td>RGB split + clip distortion</td>
+            <td>hover</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Reduced motion</h3>
+      <p>Always respect <code>prefers-reduced-motion</code>. All animations collapse to instant transitions when enabled.</p>
+<pre><code>@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}</code></pre>
+
+      <h3>Timing tokens</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fast</td>
+            <td><code>0.2s</code></td>
+          </tr>
+          <tr>
+            <td>Normal</td>
+            <td><code>0.3s</code></td>
+          </tr>
+          <tr>
+            <td>Slow</td>
+            <td><code>0.5s–0.6s</code></td>
+          </tr>
+          <tr>
+            <td>Easing (standard)</td>
+            <td><code>ease</code></td>
+          </tr>
+          <tr>
+            <td>Easing (overshoot)</td>
+            <td><code>cubic-bezier(0.68, -0.55, 0.27, 1.55)</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section 5: Assets -->
+    <section id="assets" class="section-anchor">
+      <h2>Assets</h2>
+      <p>Downloadable Wazoo brand assets.</p>
+
+      <h3>Logo</h3>
+      <p>The Wazoo logo lockup is available in light and dark variants. Always use the provided SVG files — never recreate or rasterize the logo.</p>
+
+      <div class="card-grid">
+        <div class="card">
+          <h3>Light Mode</h3>
+          <p>Darker variant for light backgrounds (#FAFAF9).</p>
+          <a href="assets/light/wazoo.svg" download>Download wazoo.svg →</a>
+        </div>
+        <div class="card">
+          <h3>Dark Mode</h3>
+          <p>Lighter variant for dark backgrounds (#040404).</p>
+          <a href="assets/dark/wazoo.svg" download>Download wazoo.svg →</a>
+        </div>
+      </div>
+
+      <h3>Favicon</h3>
+      <p>The favicon is the W Mark — <a href="assets/common/favicon.svg" download><code>favicon.svg</code></a>.</p>
+
+      <h3>Wordmark</h3>
+      <p>The wordmark is <strong>"Wazoo"</strong> in Inter 600 weight with the W glyph to its left in lockups. Always maintain clear space of at least the height of the W glyph on all sides.</p>
+
+      <h3>Usage rules</h3>
+      <ul>
+        <li>Do not stretch, rotate, recolor, or add effects to any logo asset.</li>
+        <li>Do not place logo assets on busy photographic backgrounds.</li>
+        <li>Use a solid <code>void</code> or <code>surface</code> background behind logos.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 Wazoo Technologies. Source files are available in the <a href="https://github.com/wazootech/wazoo.dev" target="_blank" rel="noopener">wazootech/wazoo.dev</a> repository.</p>
+  </footer>
+
+  <script>
+    // Navigation toggle logic
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('.nav');
+    const mobileLinks = document.querySelectorAll('.nav-links a');
+
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = nav.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+        document.documentElement.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      // Close menu when clicking a link
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+          document.documentElement.style.overflow = '';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
