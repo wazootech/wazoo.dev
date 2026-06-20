@@ -70,7 +70,7 @@ body {
 }
 
 .nav-link:hover {
-  color: #ff9800;
+  color: #ff8c00;
 }
 
 /* Fade-in animation keyframes */
@@ -142,8 +142,8 @@ body {
 }
 
 .link:hover {
-  color: #ff9800;
-  text-shadow: 0 0 8px rgba(255, 152, 0, 0.5);
+  color: #ff8c00;
+  text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
 }
 
 .tools-list {
@@ -217,7 +217,7 @@ body {
 }
 
 .social-link:hover {
-  color: #ff9800; /* Wazoo Orange */
+  color: #ff8c00; /* Wazoo Orange */
   transform: translateY(-2px);
 }
 
@@ -456,3 +456,42 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* Light Mode System Preference (Eggshell theme) */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #F7F2E8; /* Eggshell */
+    color: #1F1B14; /* Ink */
+  }
+  .company-name, .tools-list li {
+    color: #1F1B14;
+  }
+  .paragraph {
+    color: #4B4332; /* Umber */
+  }
+  .link, .nav-link, .social-link {
+    color: #4B4332;
+  }
+  .link:hover, .nav-link:hover, .social-link:hover {
+    color: #ff8c00; /* Sunset Orange */
+  }
+  .quirk-breathe {
+    animation: breathe-light 4s infinite ease-in-out;
+  }
+}
+
+@keyframes breathe-light {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    font-weight: 400;
+    color: #4B4332;
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.04);
+    font-weight: 500;
+    color: #1F1B14;
+  }
+}
+
