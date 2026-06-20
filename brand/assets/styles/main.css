@@ -1,6 +1,6 @@
 :root {
   /* Brand colors */
-  --primary: #FF9800;
+  --primary: #FF8C00;
   --primary-light: #FFB74D;
   --primary-dark: #F57C00;
   --highlight: #FFAA00;
@@ -19,14 +19,14 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --void: #FAFAF9;
+    --void: #F7F2E8;
     --surface: #FFFFFF;
     --text: #3F3F46;
     --text-muted: #71717A;
-    --white: #18181B;
+    --white: #1F1B14;
     --border: #E5E7EB;
     --border-subtle: #F1F5F9;
-    --nav-bg: rgba(250, 250, 249, 0.92);
+    --nav-bg: rgba(247, 242, 232, 0.92);
     --table-hover: #F9FAFB;
   }
 }
