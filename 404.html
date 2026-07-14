@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { font-size: 20px; }
+      body {
+        font-family: "IBM Plex Mono", monospace;
+        background-color: #040404;
+        color: #b0b0b1;
+        line-height: 1.6;
+        letter-spacing: -0.025em;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      .card {
+        max-width: 32rem;
+        text-align: center;
+        animation: fadeIn 0.6s ease forwards;
+      }
+      .card h1 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 0.75rem;
+      }
+      .card p {
+        color: #7c7c7c;
+        margin-bottom: 1.5rem;
+      }
+      .card a {
+        color: #b0b0b1;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 0.3s ease;
+      }
+      .card a:hover {
+        color: #ff8c00;
+        text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+      }
+      .spinner {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: 2px solid #1a1a1a;
+        border-top-color: #ff8c00;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-bottom: 1rem;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      ::selection {
+        background-color: #846ce4;
+        color: #ffffff;
+      }
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: #F7F2E8;
+          color: #1F1B14;
+        }
+        .card h1 { color: #1F1B14; }
+        .card p { color: #4B4332; }
+        .card a { color: #4B4332; }
+        .card a:hover { color: #ff8c00; }
+        .spinner { border-color: #d4c9b6; border-top-color: #ff8c00; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+    <script id="shortlinks" type="application/json">
+{
+  "discord": "https://discord.gg/wpaavgRMAE",
+  "github": "https://github.com/wazootech",
+  "instagram": "https://www.instagram.com/wazootech/",
+  "linkedin": "https://www.linkedin.com/company/wazootech/",
+  "x": "https://x.com/wazootech",
+  "worlds": "https://github.com/wazootech/worlds",
+  "docs": "https://docs.wazoo.dev",
+  "console": "https://console.wazoo.dev",
+  "jsr": "https://jsr.io/@worlds/client",
+  "brand": "/brand"
+}
+    </script>
+    <script type="importmap">
+      {
+        "imports": {
+          "@fartlabs/go": "https://esm.sh/jsr/@fartlabs/go@0.0.3"
+        }
+      }
+    </script>
+    <script type="module">
+      import { go } from "@fartlabs/go";
+      const shortlinks = JSON.parse(
+        document.getElementById("shortlinks").textContent,
+      );
+      const result = go(new URL(location.href), shortlinks);
+      if (result && result !== location.href) {
+        location.replace(result);
+      } else {
+        document.getElementById("spinner").style.display = "none";
+        document.getElementById("heading").textContent = "404 Not Found";
+        document.getElementById("message").textContent =
+          "This page does not exist.";
+        document.getElementById("home-link").style.display = "inline";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="card">
+      <div id="spinner" class="spinner"></div>
+      <h1 id="heading">Redirecting...</h1>
+      <p id="message">Taking you where you need to go.</p>
+      <p><a id="home-link" href="/" style="display:none;">Go to home page</a></p>
+    </div>
+    <noscript>
+      <div class="card">
+        <h1>404 Not Found</h1>
+        <p>This page does not exist.</p>
+        <p><a href="/">Go to home page</a></p>
+      </div>
+    </noscript>
+  </body>
+</html>
