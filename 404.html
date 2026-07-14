@@ -91,20 +91,6 @@
         }
       }
     </style>
-    <script id="shortlinks" type="application/json">
-{
-  "discord": "https://discord.gg/wpaavgRMAE",
-  "github": "https://github.com/wazootech",
-  "instagram": "https://www.instagram.com/wazootech/",
-  "linkedin": "https://www.linkedin.com/company/wazootech/",
-  "x": "https://x.com/wazootech",
-  "worlds": "https://github.com/wazootech/worlds",
-  "docs": "https://docs.wazoo.dev",
-  "console": "https://console.wazoo.dev",
-  "jsr": "https://jsr.io/@worlds/client",
-  "brand": "/brand"
-}
-    </script>
     <script type="importmap">
       {
         "imports": {
@@ -114,9 +100,7 @@
     </script>
     <script type="module">
       import { go } from "@fartlabs/go";
-      const shortlinks = JSON.parse(
-        document.getElementById("shortlinks").textContent,
-      );
+      const shortlinks = await (await fetch("/shortlinks.json")).json();
       const result = go(new URL(location.href), shortlinks);
       if (result && result !== location.href) {
         location.replace(result);
