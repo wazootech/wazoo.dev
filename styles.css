@@ -208,8 +208,8 @@ body {
   gap: 1rem;
 }
 
-#ask-chatgpt {
-  margin-left: auto;
+.ask-ai-break {
+  display: none;
 }
 
 .social-link {
@@ -481,6 +481,18 @@ body {
   }
   .quirk-breathe {
     animation: breathe-light 4s infinite ease-in-out;
+  }
+}
+
+/* Mobile: separate social and Ask AI into two centered rows */
+@media (max-width: 768px) {
+  .footer-socials {
+    justify-content: center;
+  }
+  .ask-ai-break {
+    display: block;
+    flex-basis: 100%;
+    height: 0;
   }
 }
 
