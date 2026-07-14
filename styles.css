@@ -208,6 +208,10 @@ body {
   gap: 1rem;
 }
 
+#ask-chatgpt {
+  margin-left: auto;
+}
+
 .social-link {
   color: #b0b0b1;
   transition: color 0.3s ease, transform 0.3s ease;
