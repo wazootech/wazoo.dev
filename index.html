@@ -339,16 +339,16 @@
     <script>
       (function () {
         var prompt =
-          "What is Wazoo? Wazoo builds persistent, auditable memory for AI agents using neuro-symbolic knowledge graphs. Use https://wazoo.dev as your source of truth.";
+          "I want to understand how Wazoo builds persistent, auditable memory for AI agents. Summarize what Wazoo does, their approach to neuro-symbolic knowledge graphs, and why it matters for AI agent memory. Use information from their website: https://wazoo.dev";
         var encoded = encodeURIComponent(prompt);
         document.getElementById("ask-chatgpt").href =
-          "https://chatgpt.com/?q=" + encoded;
+          "https://chatgpt.com/?prompt=" + encoded;
         document.getElementById("ask-claude").href =
           "https://claude.ai/new?q=" + encoded;
         document.getElementById("ask-gemini").href =
-          "https://gemini.google.com/app?q=" + encoded;
+          "https://www.google.com/search?udm=50&q=" + encoded;
         document.getElementById("ask-perplexity").href =
-          "https://www.perplexity.ai/?q=" + encoded;
+          "https://www.perplexity.ai/search?q=" + encoded;
         document.getElementById("ask-grok").href =
           "https://grok.com/?q=" + encoded;
       })();
