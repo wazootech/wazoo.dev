@@ -12,105 +12,131 @@
       rel="stylesheet"
     />
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      html { font-size: 20px; }
-      body {
-        font-family: "IBM Plex Mono", monospace;
-        background-color: #040404;
-        color: #b0b0b1;
-        line-height: 1.6;
-        letter-spacing: -0.025em;
-        min-height: 100vh;
-        -webkit-font-smoothing: antialiased;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      font-size: 20px;
+    }
+    body {
+      font-family: "IBM Plex Mono", monospace;
+      background-color: #040404;
+      color: #b0b0b1;
+      line-height: 1.6;
+      letter-spacing: -0.025em;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .card {
+      max-width: 32rem;
+      text-align: center;
+      animation: fadeIn 0.6s ease forwards;
+    }
+    .card h1 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+    }
+    .card p {
+      color: #7c7c7c;
+      margin-bottom: 1.5rem;
+    }
+    .card a {
+      color: #b0b0b1;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.3s ease;
+    }
+    .card a:hover {
+      color: #ff8c00;
+      text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+    }
+    .spinner {
+      display: inline-block;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: 2px solid #1a1a1a;
+      border-top-color: #ff8c00;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 1rem;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
       }
-      .card {
-        max-width: 32rem;
-        text-align: center;
-        animation: fadeIn 0.6s ease forwards;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    ::selection {
+      background-color: #846ce4;
+      color: #ffffff;
+    }
+    @media (prefers-color-scheme: light) {
+      body {
+        background-color: #F7F2E8;
+        color: #1F1B14;
       }
       .card h1 {
-        font-size: 1.125rem;
-        font-weight: 600;
-        color: #ffffff;
-        margin-bottom: 0.75rem;
+        color: #1F1B14;
       }
       .card p {
-        color: #7c7c7c;
-        margin-bottom: 1.5rem;
+        color: #4B4332;
       }
       .card a {
-        color: #b0b0b1;
-        text-decoration: underline;
-        text-underline-offset: 3px;
-        transition: color 0.3s ease;
+        color: #4B4332;
       }
       .card a:hover {
         color: #ff8c00;
-        text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
       }
       .spinner {
-        display: inline-block;
-        width: 1.5rem;
-        height: 1.5rem;
-        border: 2px solid #1a1a1a;
+        border-color: #d4c9b6;
         border-top-color: #ff8c00;
-        border-radius: 50%;
-        animation: spin 0.8s linear infinite;
-        margin-bottom: 1rem;
       }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to   { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
       }
-      @keyframes spin {
-        to { transform: rotate(360deg); }
-      }
-      ::selection {
-        background-color: #846ce4;
-        color: #ffffff;
-      }
-      @media (prefers-color-scheme: light) {
-        body {
-          background-color: #F7F2E8;
-          color: #1F1B14;
-        }
-        .card h1 { color: #1F1B14; }
-        .card p { color: #4B4332; }
-        .card a { color: #4B4332; }
-        .card a:hover { color: #ff8c00; }
-        .spinner { border-color: #d4c9b6; border-top-color: #ff8c00; }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-          animation-duration: 0.01ms !important;
-          transition-duration: 0.01ms !important;
-        }
-      }
+    }
     </style>
     <script type="importmap">
-      {
-        "imports": {
-          "@fartlabs/go": "https://esm.sh/jsr/@fartlabs/go@0.0.3"
-        }
+    {
+      "imports": {
+        "@fartlabs/go": "https://esm.sh/jsr/@fartlabs/go@0.0.3"
       }
+    }
     </script>
     <script type="module">
-      import { go } from "@fartlabs/go";
-      const shortlinks = await (await fetch("/shortlinks.json")).json();
-      const result = go(new URL(location.href), shortlinks);
-      if (result && result !== location.href) {
-        location.replace(result);
-      } else {
-        document.getElementById("spinner").style.display = "none";
-        document.getElementById("heading").textContent = "404 Not Found";
-        document.getElementById("message").textContent =
-          "This page does not exist.";
-        document.getElementById("home-link").style.display = "inline";
-      }
+    import { go } from "@fartlabs/go";
+    const shortlinks = await (await fetch("/shortlinks.json")).json();
+    const result = go(new URL(location.href), shortlinks);
+    if (result && result !== location.href) {
+      location.replace(result);
+    } else {
+      document.getElementById("spinner").style.display = "none";
+      document.getElementById("heading").textContent = "404 Not Found";
+      document.getElementById("message").textContent = "This page does not exist.";
+      document.getElementById("home-link").style.display = "inline";
+    }
     </script>
   </head>
   <body>

@@ -10,5 +10,5 @@ This repository contains the public Wazoo website.
   positioning.
 - Use `deno.json` as the source of truth for local tasks.
 - Run `deno fmt` when editing source or content.
-- For visual changes, run the local dev task and inspect the rendered page before
-  finishing when practical.
+- For visual changes, run the local dev task and inspect the rendered page
+  before finishing when practical.

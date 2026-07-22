@@ -353,7 +353,8 @@ body {
 }
 
 @keyframes breathe {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
     font-weight: 400;
@@ -525,16 +526,21 @@ body {
     background-color: #F7F2E8; /* Eggshell */
     color: #1F1B14; /* Ink */
   }
-  .company-name, .tools-list li {
+  .company-name,
+  .tools-list li {
     color: #1F1B14;
   }
   .paragraph {
     color: #4B4332; /* Umber */
   }
-  .link, .nav-link, .social-link {
+  .link,
+  .nav-link,
+  .social-link {
     color: #4B4332;
   }
-  .link:hover, .nav-link:hover, .social-link:hover {
+  .link:hover,
+  .nav-link:hover,
+  .social-link:hover {
     color: #ff8c00; /* Sunset Orange */
   }
   .quirk-breathe {
@@ -552,7 +558,8 @@ body {
 }
 
 @keyframes breathe-light {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1);
     font-weight: 400;
@@ -565,4 +572,3 @@ body {
     color: #1F1B14;
   }
 }
-
