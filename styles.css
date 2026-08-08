@@ -253,6 +253,15 @@ body {
   margin-top: 0.5rem;
 }
 
+.footer-cta {
+  color: #d0c7ba;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
 /* Social Icons */
 .footer-socials {
   margin-top: 2rem;
