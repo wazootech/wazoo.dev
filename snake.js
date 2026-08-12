@@ -23,16 +23,7 @@
 
   // Memory node labels for food items (referencing Wazoo & Worlds concepts)
   const NODE_LABELS = [
-    "SPARQL",
-    "Vector",
-    "Triple",
-    "Graph",
-    "Knowledge",
-    "Hippocampus",
-    "Memory",
-    "WorldModel",
-    "NeuroSymbolic",
-    "RDF",
+    "FOOD",
   ];
 
   // Game State
@@ -332,7 +323,7 @@
         <div class="snake-header">
           <div class="snake-title">
             <span class="snake-title-badge">Wazoo</span>
-            <span>MEMORY_SNAKE v1.0</span>
+            <span>SNAKE</span>
           </div>
           <div class="snake-controls-top">
             <button class="snake-icon-btn" id="snake-sound-toggle" title="Toggle Sound" aria-label="Toggle Sound">
@@ -695,7 +686,7 @@
     // 6. Draw Overlay Messages (Start / Pause / Game Over)
     if (gameState === "START") {
       drawBanner(
-        "WAZOO // MEMORY SNAKE",
+        "WAZOO // SNAKE",
         "PRESS ARROW KEYS OR WASD TO PLAY",
         "#ff8c00",
       );
