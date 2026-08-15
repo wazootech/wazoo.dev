@@ -253,6 +253,26 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Legal Links */
+.legal-links {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 0.8rem;
+}
+
+.legal-links a {
+  color: #7c7c7c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.legal-links a:hover {
+  color: #ff8c00;
+}
+
 /* Social Icons */
 .footer-socials {
   margin-top: 2rem;
