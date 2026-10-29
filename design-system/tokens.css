@@ -1,0 +1,123 @@
+/* ============================================================
+   Wazoo Design Tokens v1.1.0
+   Source of truth: DESIGN.md (root). Do not edit values here
+   without updating DESIGN.md frontmatter in the same change.
+
+   Layers:
+     1. Primitive tokens   (--wz-<name>)     raw values
+     2. Semantic tokens    (--wz-<role>)     what a value means
+   Light mode is system-adaptive via prefers-color-scheme.
+   ============================================================ */
+
+:root {
+  /* --- 1. Primitives: color -------------------------------- */
+  --wz-orange-500: #ff8c00; /* primary */
+  --wz-orange-300: #ffb74d; /* primary-light */
+  --wz-orange-600: #f57c00; /* primary-dark */
+  --wz-amber: #ffaa00;      /* highlight */
+  --wz-violet: #846ce4;     /* selection */
+  --wz-magenta: #ff00ff;    /* glitch decorative only */
+  --wz-cyan: #00ffff;       /* glitch decorative only */
+  --wz-umber: #4b4332;      /* breathe pulse target (light) */
+
+  /* --- 1. Primitives: neutrals ----------------------------- */
+  --wz-void-hex: #040404;
+  --wz-surface-hex: #0f0f0f;
+  --wz-eggshell: #f7f2e8;
+  --wz-ink: #1f1b14;
+  --wz-gray-400: #b0b0b1; /* body text on dark */
+  --wz-gray-500: #7c7c7c; /* muted text on dark */
+  --wz-white: #ffffff;
+  --wz-zinc-700: #3f3f46; /* body text on light */
+  --wz-zinc-500: #71717a; /* muted text on light */
+
+  /* --- 2. Semantic: color (dark, default) ------------------ */
+  --wz-bg: var(--wz-void-hex);
+  --wz-surface: var(--wz-surface-hex);
+  --wz-text: var(--wz-gray-400);
+  --wz-text-muted: var(--wz-gray-500);
+  --wz-heading: var(--wz-white);
+  --wz-primary: var(--wz-orange-500);
+  --wz-primary-hover: var(--wz-orange-600);
+  --wz-primary-subtle: var(--wz-orange-300);
+  --wz-highlight: var(--wz-amber);
+  --wz-selection: var(--wz-violet);
+  --wz-border: #111111;
+  --wz-border-subtle: #1a1a1a;
+  --wz-nav-bg: rgba(4, 4, 4, 0.92);
+  --wz-table-hover: #080808;
+
+  /* --- Semantic: typography --------------------------------- */
+  --wz-font-body: "IBM Plex Mono", monospace;
+  --wz-font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --wz-tracking-body: -0.025em;
+  --wz-tracking-heading: -0.02em;
+
+  /* --- Semantic: type scale (min->fluid via clamp) ---------- */
+  --wz-text-caption: 0.875rem;
+  --wz-text-body: 1.0625rem;
+  --wz-text-h3: 1.125rem;
+  --wz-text-h2: 1.5rem;
+  --wz-text-h1: 2.5rem;
+
+  /* --- Semantic: spacing scale ------------------------------ */
+  --wz-space-1: 0.25rem;
+  --wz-space-2: 0.5rem;
+  --wz-space-3: 0.75rem;
+  --wz-space-4: 1rem;
+  --wz-space-6: 1.5rem;
+  --wz-space-8: 2rem;
+  --wz-space-12: 3rem;
+  --wz-space-16: 4rem;
+
+  /* --- Semantic: shape -------------------------------------- */
+  --wz-radius-sm: 4px;
+  --wz-radius: 8px;      /* canonical: buttons, inputs, cards, badges */
+  --wz-radius-max: 12px; /* hard ceiling; no pills */
+  --wz-border-width: 1px;
+
+  /* --- Semantic: motion ------------------------------------- */
+  --wz-duration-fast: 0.2s;
+  --wz-duration-normal: 0.3s;
+  --wz-duration-slow: 0.6s;
+  --wz-ease-standard: ease;
+  --wz-ease-overshoot: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* --- 2. Semantic: color (light, system-adaptive) ------------ */
+@media (prefers-color-scheme: light) {
+  :root {
+    --wz-bg: var(--wz-eggshell);
+    --wz-surface: #ffffff;
+    --wz-text: var(--wz-zinc-700);
+    --wz-text-muted: var(--wz-zinc-500);
+    --wz-heading: var(--wz-ink);
+    --wz-primary: var(--wz-orange-500);
+    --wz-primary-hover: var(--wz-orange-600);
+    --wz-border: #e5e7eb;
+    --wz-border-subtle: #f1f5f9;
+    --wz-nav-bg: rgba(247, 242, 232, 0.92);
+    --wz-table-hover: #f9fafb;
+  }
+}
+
+/* --- Reduced motion: collapse everything -------------------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --wz-duration-fast: 0.01ms;
+    --wz-duration-normal: 0.01ms;
+    --wz-duration-slow: 0.01ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Shared selection styling -------------------------------- */
+::selection {
+  background: var(--wz-selection);
+  color: var(--wz-white);
+}
