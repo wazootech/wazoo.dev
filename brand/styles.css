@@ -451,3 +451,12 @@ hr {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Canonical-value discrepancy note (logo gradient vs DESIGN.md) */
+.brand-note {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+.brand-note code {
+  font-size: 0.8125rem;
+}
