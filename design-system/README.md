@@ -6,10 +6,10 @@ layer that code consumes.
 
 ## Files
 
-| File | What it is |
-|------|-----------|
-| `tokens.css` | CSS custom properties, two layers: primitives (`--wz-orange-500`) and semantics (`--wz-primary`). Includes dark (default) + system-adaptive light themes, reduced-motion collapse, and shared selection styling. |
-| `tokens.json` | Same values in machine-readable form for tooling (Tailwind theme generation, linting, future multi-platform output). |
+| File          | What it is                                                                                                                                                                                                       |
+| ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tokens.css`  | CSS custom properties, two layers: primitives (`--wz-orange-500`) and semantics (`--wz-primary`). Includes dark (default) + system-adaptive light themes, reduced-motion collapse, and shared selection styling. |
+| `tokens.json` | Same values in machine-readable form for tooling (Tailwind theme generation, linting, future multi-platform output).                                                                                             |
 
 ## Token naming
 
