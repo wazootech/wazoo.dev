@@ -18,8 +18,7 @@ layer that code consumes.
 --wz-<semantic-role>       what a value means; use these in UI code
 ```
 
-Primitives are numbered neutrals/scale steps so semantic roles can be
-re-pointed later without renaming call sites.
+Primitives are numbered neutrals/scale steps so semantic roles can be re-pointed later without renaming call sites.
 
 ## Consumption
 
