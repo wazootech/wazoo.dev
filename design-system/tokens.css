@@ -14,11 +14,11 @@
   --wz-orange-500: #ff8c00; /* primary */
   --wz-orange-300: #ffb74d; /* primary-light */
   --wz-orange-600: #f57c00; /* primary-dark */
-  --wz-amber: #ffaa00;      /* highlight */
-  --wz-violet: #846ce4;     /* selection */
-  --wz-magenta: #ff00ff;    /* glitch decorative only */
-  --wz-cyan: #00ffff;       /* glitch decorative only */
-  --wz-umber: #4b4332;      /* breathe pulse target (light) */
+  --wz-amber: #ffaa00; /* highlight */
+  --wz-violet: #846ce4; /* selection */
+  --wz-magenta: #ff00ff; /* glitch decorative only */
+  --wz-cyan: #00ffff; /* glitch decorative only */
+  --wz-umber: #4b4332; /* breathe pulse target (light) */
 
   /* --- 1. Primitives: neutrals ----------------------------- */
   --wz-void-hex: #040404;
@@ -49,7 +49,8 @@
 
   /* --- Semantic: typography --------------------------------- */
   --wz-font-body: "IBM Plex Mono", monospace;
-  --wz-font-heading: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --wz-font-heading:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --wz-tracking-body: -0.025em;
   --wz-tracking-heading: -0.02em;
 
@@ -72,7 +73,7 @@
 
   /* --- Semantic: shape -------------------------------------- */
   --wz-radius-sm: 4px;
-  --wz-radius: 8px;      /* canonical: buttons, inputs, cards, badges */
+  --wz-radius: 8px; /* canonical: buttons, inputs, cards, badges */
   --wz-radius-max: 12px; /* hard ceiling; no pills */
   --wz-border-width: 1px;
 
