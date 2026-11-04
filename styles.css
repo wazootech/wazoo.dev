@@ -146,13 +146,25 @@ body {
   text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
 }
 
-/* Clayzo world-model loop (source: animations/author-world.ts) */
+/* Clayzo world-model loop (source: animations/author-world.ts).
+   A decorative background plane behind the content. */
 .world {
-  margin: 0.5rem 0;
-  max-width: 42rem;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
   opacity: 0;
-  animation: fadeIn 0.6s ease forwards;
-  animation-delay: 0.3s;
+  animation: worldIn 1.5s ease 0.3s forwards;
+  /* Fade the edges so the canvas never reads as a box. */
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent
+    75%);
+  mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent 75%);
+}
+
+@keyframes worldIn {
+  to {
+    opacity: 0.4;
+  }
 }
 
 .world[hidden] {
@@ -162,11 +174,15 @@ body {
 .world canvas {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: 840 / 480;
-  background: #040404;
-  border: 1px solid #2a1a00;
-  border-radius: 8px;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* The loop is drawn on void black; on the eggshell theme it would be a dark slab. */
+@media (prefers-color-scheme: light) {
+  .world {
+    display: none;
+  }
 }
 
 .beta-callout {

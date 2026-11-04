@@ -107,6 +107,14 @@
     </script>
   </head>
   <body>
+    <div class="world" aria-hidden="true">
+      <canvas
+        data-clayzo="/motion/world.json"
+        data-still="480"
+        width="840"
+        height="480"
+      ></canvas>
+    </div>
     <div class="container">
       <header class="header">
         <a href="/" class="logo">
@@ -121,18 +129,6 @@
         <p class="paragraph">
           <strong>Intelligence is entering a new world.</strong>
         </p>
-
-        <figure class="world"
-          aria-label="An animated world model: a central agent linked to orbiting memories.">
-          <canvas
-            data-clayzo="/motion/world.json"
-            data-still="480"
-            width="840"
-            height="480"
-            role="img"
-            aria-label="A central node linked to orbiting memory nodes, pulsing as the agent recalls them."
-          ></canvas>
-        </figure>
 
         <section class="beta-callout" id="private-beta"
           aria-labelledby="private-beta-heading">
