@@ -146,6 +146,29 @@ body {
   text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
 }
 
+/* Clayzo world-model loop (source: animations/author-world.ts) */
+.world {
+  margin: 0.5rem 0;
+  max-width: 42rem;
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.world[hidden] {
+  display: none;
+}
+
+.world canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 840 / 480;
+  background: #040404;
+  border: 1px solid #2a1a00;
+  border-radius: 8px;
+}
+
 .beta-callout {
   border: 1px solid #ffaa00;
   background: #120d03;

@@ -103,6 +103,13 @@ Animation at Wazoo is split into two modalities:
   pulses between Umber (`#4B4332`) and Ink (`#1F1B14`).
 - **Glitch (Quirk):** Glitch badges display an RGB split and clip path
   distortion on hover.
+- **World loop (Clayzo):** The home page hero is a seamless 8s, 30fps loop
+  authored with [Clayzo](https://www.clayzo.com/) in
+  `animations/author-world.ts`: a hub, orbiting memory nodes, live edges, and
+  recall pulses, in brand tokens only. Run `deno task motion` to regenerate
+  `motion/world.json` and `motion/player.js`. Playback makes no request to
+  Clayzo. Under `prefers-reduced-motion` it draws a still frame instead of
+  playing.
 
 ## Shapes
 

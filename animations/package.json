@@ -1,0 +1,19 @@
+{
+  "name": "wazoo-animations",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "author": "tsx author-world.ts",
+    "build": "npm run author && node build.mjs"
+  },
+  "dependencies": {
+    "@clayzo/animation": "^0.3.20",
+    "@clayzo/webgl-player": "^0.3.20"
+  },
+  "devDependencies": {
+    "clayzo": "^0.3.20",
+    "esbuild": "^0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
