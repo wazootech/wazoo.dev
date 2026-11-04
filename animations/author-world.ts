@@ -1,6 +1,6 @@
-// Authors animations/world.json: a seamless 8s loop of a small "world model":
+// Authors animations/world.json: a seamless 24s loop of a small "world model":
 // a hub (the agent) with orbiting memory nodes, live edges, and recall pulses.
-// Run: npm run build:world
+// Run: npm run build
 import { mkdirSync, writeFileSync } from "node:fs";
 import {
   ANIMATION_DOCUMENT_VERSION,
@@ -11,10 +11,12 @@ import {
   hex,
   keyed,
   marker,
+  parallaxLayersMacro,
   type PathData,
   type SceneNode,
   stroke,
   withComputedRevision,
+  withInteraction,
 } from "@clayzo/animation/authoring";
 
 const W = 840;
@@ -24,8 +26,9 @@ const CY = H / 2;
 const TPS = 240;
 const FPS = 30;
 const STEP = TPS / FPS; // 8 ticks per frame
-const SECONDS = 8;
-const DURATION = TPS * SECONDS; // 1920
+const SECONDS = 24; // slow and ambient: this is a background plane
+const DURATION = TPS * SECONDS; // 5760
+const K = DURATION / 1920; // the beat grid below was laid out for 8s
 
 // Brand tokens from DESIGN.md.
 const VOID = hex("#040404");
@@ -69,9 +72,9 @@ const posAt = (o: Orbit, tick: number) => {
 // One sample per frame so linear interpolation tracks the ellipse closely.
 const sampleTicks: number[] = [];
 for (let t = 0; t <= DURATION; t += STEP) sampleTicks.push(t);
-// Edges are sampled every 2 frames (a 12 degree step on an 8s orbit, ~1px chord error).
+// Edges are sampled every 6 frames (a 12 degree step on a 24s orbit, ~1px chord error).
 const edgeTicks: number[] = [];
-for (let t = 0; t <= DURATION; t += STEP * 2) edgeTicks.push(t);
+for (let t = 0; t <= DURATION; t += STEP * 2 * K) edgeTicks.push(t);
 
 const nodes: Record<string, SceneNode> = {};
 const roots: string[] = [];
@@ -167,13 +170,13 @@ for (const [a, b] of links) {
 // Recall pulses: a bright dot travels hub -> node, staggered around the loop.
 const pulses: { node: string; start: number }[] = [
   { node: "n1", start: 0 },
-  { node: "n3", start: 480 },
-  { node: "n2", start: 960 },
-  { node: "n1", start: 1440 },
+  { node: "n3", start: 480 * K },
+  { node: "n2", start: 960 * K },
+  { node: "n1", start: 1440 * K },
 ];
 pulses.forEach(({ node, start }, i) => {
   const id = `pulse-${i}`;
-  const len = 360;
+  const len = 360 * K;
   const track = (axis: "x" | "y") =>
     sampleTicks
       .filter((t) => t >= start && t <= start + len)
@@ -207,8 +210,8 @@ pulses.forEach(({ node, start }, i) => {
     style: {
       fill: fill(
         hex("#FFFFFF"),
-        keyed(`${id}.fade`, [[start, 0, OUT], [start + 40, 1, "linear"], [
-          start + len - 60,
+        keyed(`${id}.fade`, [[start, 0, OUT], [start + 40 * K, 1, "linear"], [
+          start + len - 60 * K,
           1,
           OUT,
         ], [start + len, 0]]),
@@ -219,16 +222,16 @@ pulses.forEach(({ node, start }, i) => {
 
 // Hub: breathing core, plus 4 expanding "ping" rings per loop (every 2s).
 for (let i = 0; i < 4; i++) {
-  const s = i * 480;
+  const s = i * 480 * K;
   const id = `ping-${i}`;
   add(id, {
     ...base(id, {
       inTick: s,
-      outTick: s + 480,
+      outTick: s + 480 * K,
       x: CX,
       y: CY,
       scale: keyed(`${id}.scale`, [[s, { x: 0.3, y: 0.3, z: 1 }, OUT], [
-        s + 480,
+        s + 480 * K,
         { x: 1, y: 1, z: 1 },
       ]]),
     }),
@@ -236,7 +239,10 @@ for (let i = 0; i < 4; i++) {
     size: constant({ width: 420, height: 420 }),
     style: {
       stroke: stroke(ORANGE, 1.5, {
-        opacity: keyed(`${id}.alpha`, [[s, 0.55, "linear"], [s + 479, 0]]),
+        opacity: keyed(`${id}.alpha`, [[s, 0.55, "linear"], [
+          s + 480 * K - STEP,
+          0,
+        ]]),
       }),
     },
   } as SceneNode);
@@ -247,16 +253,15 @@ add("hub-glow", {
     outTick: DURATION,
     x: CX,
     y: CY,
+    // Four slow breaths per loop.
     scale: keyed("hub-glow.scale", [
-      [0, { x: 1, y: 1, z: 1 }, OUT],
-      [240, { x: 1.18, y: 1.18, z: 1 }, OUT],
-      [480, { x: 1, y: 1, z: 1 }, OUT],
-      [720, { x: 1.18, y: 1.18, z: 1 }, OUT],
-      [960, { x: 1, y: 1, z: 1 }, OUT],
-      [1200, { x: 1.18, y: 1.18, z: 1 }, OUT],
-      [1440, { x: 1, y: 1, z: 1 }, OUT],
-      [1680, { x: 1.18, y: 1.18, z: 1 }, OUT],
-      [1920, { x: 1, y: 1, z: 1 }],
+      ...Array.from({ length: 8 }, (_, i) =>
+        [
+          i * 240 * K,
+          { x: i % 2 ? 1.18 : 1, y: i % 2 ? 1.18 : 1, z: 1 },
+          OUT,
+        ] as const),
+      [DURATION, { x: 1, y: 1, z: 1 }] as const,
     ]),
   }),
   type: "ellipse",
@@ -312,7 +317,21 @@ for (const o of orbits) {
 // Edge shimmer is deliberately absent: GRAY is reserved for future labels.
 void GRAY;
 
-const document = withComputedRevision({
+// Two parallax layers. The orbit guides are a backdrop; everything else moves
+// as one so edges never detach from the hub.
+const guideIds = roots.filter((id) => id.startsWith("guide-"));
+const frontIds = roots.filter((id) => id !== "field" && !guideIds.includes(id));
+const layer = (id: string, children: string[]): SceneNode =>
+  ({
+    ...base(id, { outTick: DURATION, x: 0, y: 0 }),
+    type: "group",
+    children,
+  }) as SceneNode;
+nodes["layer-back"] = layer("layer-back", guideIds);
+nodes["layer-front"] = layer("layer-front", frontIds);
+const rootIds = ["field", "layer-back", "layer-front"];
+
+const timeline = withComputedRevision({
   version: ANIMATION_DOCUMENT_VERSION,
   id: "wazoo-world",
   name: "Wazoo world model",
@@ -334,13 +353,25 @@ const document = withComputedRevision({
       height: H,
       durationTicks: DURATION,
       nodes,
-      rootNodeIds: roots,
+      rootNodeIds: rootIds,
     },
   },
   markers: [marker("loop-start", 0)],
   design: { tokens: { looping: true } },
   capabilities: { required: [], optional: [], unsupportedPolicy: "warn" },
 });
+
+// Cursor parallax: the web drifts up to 18 units, the backdrop rings about half
+// of that. The idle loop keeps playing underneath.
+const document = withComputedRevision(
+  withInteraction(timeline, [
+    parallaxLayersMacro({
+      nodeIds: ["layer-back", "layer-front"],
+      span: 420,
+      reach: 18,
+    }),
+  ]),
+);
 
 assertValidAnimationDocument(document);
 mkdirSync("out", { recursive: true });
