@@ -281,6 +281,21 @@ add("hub-core", {
   style: { fill: fill(VOID) },
 } as SceneNode);
 
+// Moons: small satellites on a faster orbit around some nodes. Whole
+// revolutions per loop keep them seamless; the ring is a faint guide.
+type Moon = { d: number; r: number; revs: number; phase: number };
+const moons: Record<string, Moon[]> = {
+  n1: [{ d: 24, r: 2.5, revs: 4, phase: 0.5 }],
+  n3: [{ d: 22, r: 2.5, revs: -5, phase: 1.2 }, {
+    d: 32,
+    r: 2,
+    revs: 3,
+    phase: 3.9,
+  }],
+  n4: [{ d: 23, r: 2.5, revs: 4, phase: 2.8 }],
+  n6: [{ d: 26, r: 3, revs: -3, phase: 4.6 }],
+};
+
 // Memory nodes: halo + body, both riding the sampled orbit.
 for (const o of orbits) {
   // A group at the hub rotates; the node sits at its radius. Two keys per orbit.
@@ -298,6 +313,37 @@ for (const o of orbits) {
     size: constant({ width: o.r * 2, height: o.r * 2 }),
     style: { fill: fill(o.color) },
   } as SceneNode;
+  const kids = [`${o.id}-halo`, o.id];
+  (moons[o.id] ?? []).forEach((m, i) => {
+    const mid = `${o.id}-moon${i}`;
+    nodes[`${mid}-ring`] = {
+      ...base(`${mid}-ring`, { outTick: DURATION, x: o.rx, y: 0 }),
+      type: "ellipse",
+      size: constant({ width: m.d * 2, height: m.d * 2 }),
+      style: { stroke: stroke(o.color, 0.75, { opacity: 0.18 }) },
+    } as SceneNode;
+    nodes[mid] = {
+      ...base(mid, { outTick: DURATION, x: m.d, y: 0 }),
+      type: "ellipse",
+      size: constant({ width: m.r * 2, height: m.r * 2 }),
+      style: { fill: fill(GRAY) },
+    } as SceneNode;
+    const deg = (m.phase * 180) / Math.PI;
+    nodes[`${mid}-orbit`] = {
+      ...base(`${mid}-orbit`, {
+        outTick: DURATION,
+        x: o.rx,
+        y: 0,
+        rotation: keyed(`${mid}.rot`, [
+          [0, { x: 0, y: 0, z: deg }, "linear"],
+          [DURATION, { x: 0, y: 0, z: deg + m.revs * 360 }],
+        ]),
+      }),
+      type: "group",
+      children: [mid],
+    } as SceneNode;
+    kids.push(`${mid}-ring`, `${mid}-orbit`);
+  });
   add(`${o.id}-orbit`, {
     ...base(`${o.id}-orbit`, {
       outTick: DURATION,
@@ -310,12 +356,9 @@ for (const o of orbits) {
       ], [DURATION, { x: 0, y: 0, z: endDeg }]]),
     }),
     type: "group",
-    children: [`${o.id}-halo`, o.id],
+    children: kids,
   } as SceneNode);
 }
-
-// Edge shimmer is deliberately absent: GRAY is reserved for future labels.
-void GRAY;
 
 // Two parallax layers. The orbit guides are a backdrop; everything else moves
 // as one so edges never detach from the hub.
