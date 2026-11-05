@@ -1,5 +1,9 @@
 {
   "tasks": {
-    "dev": "deno run --allow-net --allow-read jsr:@std/http/file-server"
+    "dev": "deno run --allow-net --allow-read jsr:@std/http/file-server",
+    "motion": "cd animations && npm install && npm run build"
+  },
+  "fmt": {
+    "exclude": ["motion/", "animations/node_modules/", "animations/out/"]
   }
 }
