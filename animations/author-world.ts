@@ -468,7 +468,7 @@ const document = withComputedRevision(
       focusParameterId: "dither.focus",
       radiusParameterId: "dither.focusRadius",
       radius: 110,
-      halfLife: 0.12,
+      halfLife: 0.06, // Clayzo: 0.04-0.08s for focus tracking
     }),
   ]),
 );
