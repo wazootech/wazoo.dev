@@ -1,8 +1,8 @@
 // Cloudflare Workers Builds config for wazoo.dev previews.
 //
 // Static assets only: no build step, no Worker script. Workers Builds runs
-// `npx wrangler versions upload` on non-production branches, so every pull
-// request gets a preview URL. Production is still GitHub Pages (CNAME); there
+// `npx wrangler preview` (open beta; needs the `previews` block below) on
+// non-production branches, so every pull request gets a preview URL. Production is still GitHub Pages (CNAME); there
 // is deliberately no custom-domain route here, so this cannot take over
 // wazoo.dev until a cutover is approved.
 {
@@ -16,5 +16,6 @@
     "not_found_handling": "404-page"
   },
   "workers_dev": true,
-  "preview_urls": true
+  "preview_urls": true,
+  "previews": {}
 }
