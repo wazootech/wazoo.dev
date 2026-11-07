@@ -13,6 +13,7 @@ import {
   marker,
   parallaxLayersMacro,
   type PathData,
+  pointerFieldMacro,
   type SceneNode,
   stroke,
   withComputedRevision,
@@ -372,7 +373,56 @@ const layer = (id: string, children: string[]): SceneNode =>
   }) as SceneNode;
 nodes["layer-back"] = layer("layer-back", guideIds);
 nodes["layer-front"] = layer("layer-front", frontIds);
-const rootIds = ["field", "layer-back", "layer-front"];
+
+// Dithering: the web is quantized to a coarse ordered-dither screen, so it
+// reads as a printed, low-bit plate rather than smooth vector. The void field
+// stays outside the effect (dithered, it turns into a dot lattice). Amount
+// 0.45 keeps empty pixels black; 0.3 erases the faint orbit guides. The
+// cursor carries a lens (focusAmount -1) that resolves the web back to clean
+// vector where you look; pointerFieldMacro moves it and opens/closes it.
+nodes["scene"] = layer("scene", ["layer-back", "layer-front"]);
+const num = (
+  name: string,
+  value: number,
+  minimum: number,
+  maximum: number,
+) => ({
+  id: `dither.${name}`,
+  name,
+  valueType: "number" as const,
+  value: constant(value),
+  minimum,
+  maximum,
+});
+nodes["dither"] = {
+  ...base("dither", { outTick: DURATION, x: 0, y: 0 }),
+  type: "effect",
+  inputId: "scene",
+  effect: "dithering",
+  parameters: [
+    num("amount", 0.45, 0, 1),
+    num("levels", 3, 2, 256),
+    num("scale", 3, 1, 64),
+    {
+      id: "dither.focus",
+      name: "focus",
+      valueType: "point",
+      value: constant({ x: CX, y: CY }),
+      minimum: { x: 0, y: 0 },
+      maximum: { x: W, y: H },
+    },
+    num("focusRadius", 0, 0, 4096),
+    num("focusScale", 0.5, 0.05, 32),
+    num("focusAmount", -1, -1, 1),
+  ],
+  // Players without runtime effects draw the plain vector loop.
+  capability: {
+    requires: ["runtime-effect"],
+    fallback: "passthrough",
+    maxTemporarySurfaces: 1,
+  },
+} as SceneNode;
+const rootIds = ["field", "dither"];
 
 const timeline = withComputedRevision({
   version: ANIMATION_DOCUMENT_VERSION,
@@ -412,6 +462,13 @@ const document = withComputedRevision(
       nodeIds: ["layer-back", "layer-front"],
       span: 420,
       reach: 18,
+    }),
+    pointerFieldMacro({
+      effectNodeId: "dither",
+      focusParameterId: "dither.focus",
+      radiusParameterId: "dither.focusRadius",
+      radius: 110,
+      halfLife: 0.12,
     }),
   ]),
 );
