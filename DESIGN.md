@@ -108,14 +108,15 @@ Animation at Wazoo is split into two modalities:
   `animations/author-world.ts`: a hub, orbiting memory nodes (some with moons),
   live edges, and recall pulses, in brand tokens only. The web is drawn through
   Clayzo's `dithering` effect (2 levels, 3px screen) so it reads as a low-bit
-  printed plate in exactly two colors: the scene is grayed first, and a color
-  matrix maps the result to Void and Sunset Orange, so no off-brand hues appear.
-  The cursor drifts it with a two-layer parallax and carries a lens that
-  sharpens the screen where you look. Players without runtime effects draw the
-  plain vector loop. Run `deno task motion` to regenerate `motion/world.json`
-  and `motion/player.js`. Playback makes no request to Clayzo. Under
-  `prefers-reduced-motion` it draws a still frame instead of playing. Hidden on
-  the light theme.
+  printed plate in exactly three colors: the scene splits into orange and violet
+  signals before dithering, and a color matrix maps them to Void, Sunset Orange
+  (hub, hub edges, nodes) and Selection violet (orbit guides, side links, violet
+  nodes), so no off-brand hues appear. The cursor drifts it with a two-layer
+  parallax and carries a lens that sharpens the screen where you look. Players
+  without runtime effects draw the plain vector loop. Run `deno task motion` to
+  regenerate `motion/world.json` and `motion/player.js`. Playback makes no
+  request to Clayzo. Under `prefers-reduced-motion` it draws a still frame
+  instead of playing. Hidden on the light theme.
 
 ## Shapes
 

@@ -37,7 +37,6 @@ const ORANGE = hex("#FF8C00");
 const AMBER = hex("#FFAA00");
 const SOFT = hex("#FFB74D");
 const GRAY = hex("#B0B0B1");
-const DIM = hex("#7C7C7C");
 const VIOLET = hex("#846CE4");
 
 const OUT = { x1: 0.2, y1: 0.45, x2: 0.45, y2: 1 };
@@ -104,7 +103,7 @@ for (
     ...base(id, { outTick: DURATION, x: CX, y: CY }),
     type: "ellipse",
     size: constant({ width: rx * 2, height: ry * 2 }),
-    style: { stroke: stroke(DIM, 1, { opacity: 0.22 }) },
+    style: { stroke: stroke(VIOLET, 1, { opacity: 0.22 }) },
   });
 }
 
@@ -161,7 +160,7 @@ for (const [a, b] of links) {
       })),
     },
     style: {
-      stroke: stroke(hubEdge ? ORANGE : DIM, hubEdge ? 1.5 : 1, {
+      stroke: stroke(hubEdge ? ORANGE : VIOLET, hubEdge ? 1.5 : 1, {
         opacity: hubEdge ? 0.55 : 0.3,
       }),
     },
@@ -420,28 +419,32 @@ const matrix = (id: string, inputId: string, m: number[]): SceneNode =>
     },
   }) as SceneNode;
 // Dithering quantizes each channel on its own, so colored input lands on
-// off-brand hues (dim orange on maroon, violet on blue). Graying first
-// makes every channel equal; two levels then give pure black or white,
-// and "brand" maps those to Void and Sunset Orange. Two colors, total.
-// Weights of 0.65 put orange at 1.0 (solid nodes) and void at 0.03, which
-// the 4x4 Bayer screen (max +0.44) never lights.
-// Alpha is forced to 1 so antialiased edges snap instead of blending into
-// in-between colors further down the chain.
+// off-brand hues (dim orange on maroon, violet on blue). Instead "split"
+// carries two brightness signals: red is "orange-ness" and blue is "violet-ness" (how much blue beats
+// red). Two levels then turn each into on/off, "excl" lets violet win where
+// both fire, and "brand" maps them to Void, Sunset Orange and Selection
+// violet. Three colors, total.
+// Orange-ness weights (-0.208, 2.2, -0.992) score orange and white at 1.0
+// (solid), violet below 0 and void at 0.016, which the 4x4 Bayer screen
+// (max +0.44) never lights; faint elements scale linearly into sparse dots.
+// Gray and white elements count as orange. Violet-ness is 2.7 * (b - r):
+// 1.0 for violet, 0 for grays, negative for orange. Alpha is forced to 1 so antialiased edges snap
+// instead of blending into in-between colors further down the chain.
 // deno-fmt-ignore
-nodes["gray"] = matrix("gray", "scene", [
-  0.65, 0.65, 0.65, 0, 0,
-  0.65, 0.65, 0.65, 0, 0,
-  0.65, 0.65, 0.65, 0, 0,
+nodes["split"] = matrix("split", "scene", [
+  -0.208, 2.2, -0.992, 0, 0,
+  0, 0, 0, 0, 0,
+  -2.7, 0, 2.7, 0, 0,
   0, 0, 0, 0, 1,
 ]);
 nodes["dither"] = {
   ...base("dither", { outTick: DURATION, x: 0, y: 0 }),
   type: "effect",
-  inputId: "gray",
+  inputId: "split",
   effect: "dithering",
   parameters: [
     num("amount", 1, 0, 1),
-    // Two levels: on or off per pixel ("gray" made channels equal).
+    // Two levels: each signal is on or off per pixel.
     num("levels", 2, 2, 256),
     num("scale", 3, 1, 64),
     {
@@ -463,12 +466,20 @@ nodes["dither"] = {
     maxTemporarySurfaces: 1,
   },
 } as SceneNode;
-// Black -> Void (#040404), white -> Sunset Orange (#FF8C00).
 // deno-fmt-ignore
-nodes["brand"] = matrix("brand", "dither", [
-  0.9843, 0, 0, 0, 0.0157,
-  0.5333, 0, 0, 0, 0.0157,
-  -0.0157, 0, 0, 0, 0.0157,
+nodes["excl"] = matrix("excl", "dither", [
+  1, 0, -1, 0, 0,
+  0, 0, 0, 0, 0,
+  0, 0, 1, 0, 0,
+  0, 0, 0, 1, 0,
+]);
+// Off -> Void (#040404), red -> Sunset Orange (#FF8C00),
+// blue -> Selection violet (#846CE4).
+// deno-fmt-ignore
+nodes["brand"] = matrix("brand", "excl", [
+  0.9843, 0, 0.5020, 0, 0.0157,
+  0.5333, 0, 0.4078, 0, 0.0157,
+  -0.0157, 0, 0.8784, 0, 0.0157,
   0, 0, 0, 1, 0,
 ]);
 const rootIds = ["brand"];
