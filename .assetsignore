@@ -1,0 +1,18 @@
+# Repo files that are not part of the site (wrangler.jsonc serves the repo root).
+.git
+.github
+.githooks
+.vscode
+.gitattributes
+.gitignore
+.assetsignore
+node_modules
+.wrangler
+.dev.vars*
+.env*
+animations
+*.md
+deno.json
+deno.lock
+wrangler.jsonc
+CNAME
