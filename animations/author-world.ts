@@ -13,6 +13,7 @@ import {
   marker,
   parallaxLayersMacro,
   type PathData,
+  pointerFieldMacro,
   type SceneNode,
   stroke,
   withComputedRevision,
@@ -36,7 +37,6 @@ const ORANGE = hex("#FF8C00");
 const AMBER = hex("#FFAA00");
 const SOFT = hex("#FFB74D");
 const GRAY = hex("#B0B0B1");
-const DIM = hex("#7C7C7C");
 const VIOLET = hex("#846CE4");
 
 const OUT = { x1: 0.2, y1: 0.45, x2: 0.45, y2: 1 };
@@ -103,7 +103,7 @@ for (
     ...base(id, { outTick: DURATION, x: CX, y: CY }),
     type: "ellipse",
     size: constant({ width: rx * 2, height: ry * 2 }),
-    style: { stroke: stroke(DIM, 1, { opacity: 0.22 }) },
+    style: { stroke: stroke(VIOLET, 1, { opacity: 0.22 }) },
   });
 }
 
@@ -160,7 +160,7 @@ for (const [a, b] of links) {
       })),
     },
     style: {
-      stroke: stroke(hubEdge ? ORANGE : DIM, hubEdge ? 1.5 : 1, {
+      stroke: stroke(hubEdge ? ORANGE : VIOLET, hubEdge ? 1.5 : 1, {
         opacity: hubEdge ? 0.55 : 0.3,
       }),
     },
@@ -372,7 +372,117 @@ const layer = (id: string, children: string[]): SceneNode =>
   }) as SceneNode;
 nodes["layer-back"] = layer("layer-back", guideIds);
 nodes["layer-front"] = layer("layer-front", frontIds);
-const rootIds = ["field", "layer-back", "layer-front"];
+
+// Dithering: the web is quantized to a coarse ordered-dither screen, so it
+// reads as a printed, low-bit plate rather than smooth vector. The void field
+// renders under the web inside the effect. Amount 1 makes dot density track
+// brightness, so faint guides and halos survive as sparse dots. The
+// cursor carries a lens (focusAmount -1) that resolves the web back to clean
+// vector where you look; pointerFieldMacro moves it and opens/closes it.
+// The void field sits under the web inside the scene, so the scene is opaque
+// and faint strokes keep their real (premultiplied) brightness going into
+// the dither.
+nodes["scene"] = layer("scene", ["field", "layer-back", "layer-front"]);
+const num = (
+  name: string,
+  value: number,
+  minimum: number,
+  maximum: number,
+) => ({
+  id: `dither.${name}`,
+  name,
+  valueType: "number" as const,
+  value: constant(value),
+  minimum,
+  maximum,
+});
+// Color matrix as a node: m0-m19 are a row-major 4x5 matrix over
+// (r, g, b, a, 1); the player clamps the result to 0-1.
+const matrix = (id: string, inputId: string, m: number[]): SceneNode =>
+  ({
+    ...base(id, { outTick: DURATION, x: 0, y: 0 }),
+    type: "effect",
+    inputId,
+    effect: "color-matrix",
+    parameters: m.map((value, i) => ({
+      id: `${id}.m${i}`,
+      name: `m${i}`,
+      valueType: "number" as const,
+      value: constant(value),
+      minimum: -10,
+      maximum: 10,
+    })),
+    capability: {
+      requires: ["image-filter"],
+      fallback: "passthrough",
+      maxTemporarySurfaces: 1,
+    },
+  }) as SceneNode;
+// Dithering quantizes each channel on its own, so colored input lands on
+// off-brand hues (dim orange on maroon, violet on blue). Instead "split"
+// carries two brightness signals: red is "orange-ness" and blue is "violet-ness" (how much blue beats
+// red). Two levels then turn each into on/off, "excl" lets violet win where
+// both fire, and "brand" maps them to Void, Sunset Orange and Selection
+// violet. Three colors, total.
+// Orange-ness weights (-0.208, 2.2, -0.992) score orange and white at 1.0
+// (solid), violet below 0 and void at 0.016, which the 4x4 Bayer screen
+// (max +0.44) never lights; faint elements scale linearly into sparse dots.
+// Gray and white elements count as orange. Violet-ness is 2.7 * (b - r):
+// 1.0 for violet, 0 for grays, negative for orange. Alpha is forced to 1 so antialiased edges snap
+// instead of blending into in-between colors further down the chain.
+// deno-fmt-ignore
+nodes["split"] = matrix("split", "scene", [
+  -0.208, 2.2, -0.992, 0, 0,
+  0, 0, 0, 0, 0,
+  -2.7, 0, 2.7, 0, 0,
+  0, 0, 0, 0, 1,
+]);
+nodes["dither"] = {
+  ...base("dither", { outTick: DURATION, x: 0, y: 0 }),
+  type: "effect",
+  inputId: "split",
+  effect: "dithering",
+  parameters: [
+    num("amount", 1, 0, 1),
+    // Two levels: each signal is on or off per pixel.
+    num("levels", 2, 2, 256),
+    num("scale", 3, 1, 64),
+    {
+      id: "dither.focus",
+      name: "focus",
+      valueType: "point",
+      value: constant({ x: CX, y: CY }),
+      minimum: { x: 0, y: 0 },
+      maximum: { x: W, y: H },
+    },
+    num("focusRadius", 0, 0, 4096),
+    num("focusScale", 0.5, 0.05, 32),
+    num("focusAmount", -1, -1, 1),
+  ],
+  // Players without runtime effects draw the plain vector loop.
+  capability: {
+    requires: ["runtime-effect"],
+    fallback: "passthrough",
+    maxTemporarySurfaces: 1,
+  },
+} as SceneNode;
+// deno-fmt-ignore
+nodes["excl"] = matrix("excl", "dither", [
+  1, 0, -1, 0, 0,
+  0, 0, 0, 0, 0,
+  0, 0, 1, 0, 0,
+  0, 0, 0, 1, 0,
+]);
+// Off -> Void (#040404), red -> Sunset Orange (#FF8C00),
+// blue -> Selection violet (#846CE4).
+// deno-fmt-ignore
+nodes["brand"] = matrix("brand", "excl", [
+  0.9843, 0, 0.5020, 0, 0.0157,
+  0.5333, 0, 0.4078, 0, 0.0157,
+  -0.0157, 0, 0.8784, 0, 0.0157,
+  0, 0, 0, 1, 0,
+]);
+const rootIds = ["brand"];
 
 const timeline = withComputedRevision({
   version: ANIMATION_DOCUMENT_VERSION,
@@ -412,6 +522,13 @@ const document = withComputedRevision(
       nodeIds: ["layer-back", "layer-front"],
       span: 420,
       reach: 18,
+    }),
+    pointerFieldMacro({
+      effectNodeId: "dither",
+      focusParameterId: "dither.focus",
+      radiusParameterId: "dither.focusRadius",
+      radius: 110,
+      halfLife: 0.06, // Clayzo: 0.04-0.08s for focus tracking
     }),
   ]),
 );
