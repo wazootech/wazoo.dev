@@ -147,23 +147,21 @@ body {
 }
 
 /* Clayzo world-model loop (source: animations/author-world.ts).
-   A decorative background plane behind the content. */
+   The loop has its own region and never sits behind text: stacked above the
+   copy on narrow screens, in a sticky right column on wide ones. */
 .world {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
+  aspect-ratio: 7 / 4;
+  background: #040404;
+  max-height: 45vh;
+  overflow: hidden;
   pointer-events: none;
   opacity: 0;
   animation: worldIn 1.5s ease 0.3s forwards;
-  /* Fade the edges so the canvas never reads as a box. */
-  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent
-    75%);
-  mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent 75%);
 }
 
 @keyframes worldIn {
   to {
-    opacity: 0.4;
+    opacity: 1;
   }
 }
 
@@ -178,10 +176,30 @@ body {
   object-fit: cover;
 }
 
-/* The loop is drawn on void black; on the eggshell theme it would be a dark slab. */
+@media (min-width: 1500px) {
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 56rem) 1fr;
+  }
+
+  .layout > .world {
+    align-self: center;
+    grid-column: 2;
+    grid-row: 1;
+    margin: 0 4rem 0 0;
+    max-height: none;
+    position: sticky;
+    top: calc(50vh - 15rem);
+    width: auto;
+  }
+}
+
+/* The loop is drawn on void black; on the eggshell theme it stays a framed
+   dark plate rather than bleeding into the page. */
 @media (prefers-color-scheme: light) {
   .world {
-    display: none;
+    border: 1px solid #1f1b14;
+    border-radius: 8px;
   }
 }
 

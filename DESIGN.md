@@ -103,8 +103,8 @@ Animation at Wazoo is split into two modalities:
   pulses between Umber (`#4B4332`) and Ink (`#1F1B14`).
 - **Glitch (Quirk):** Glitch badges display an RGB split and clip path
   distortion on hover.
-- **World loop (Clayzo):** The home page background plane is a seamless 24s,
-  30fps loop authored with [Clayzo](https://www.clayzo.com/) in
+- **World loop (Clayzo):** The home page hero loop is a seamless 24s, 30fps loop
+  authored with [Clayzo](https://www.clayzo.com/) in
   `animations/author-world.ts`: a hub, orbiting memory nodes (some with moons),
   live edges, and recall pulses, in brand tokens only. The web is drawn through
   Clayzo's `dithering` effect (2 levels, 3px screen) so it reads as a low-bit
@@ -116,7 +116,10 @@ Animation at Wazoo is split into two modalities:
   without runtime effects draw the plain vector loop. Run `deno task motion` to
   regenerate `motion/world.json` and `motion/player.js`. Playback makes no
   request to Clayzo. Under `prefers-reduced-motion` it draws a still frame
-  instead of playing. Hidden on the light theme.
+  instead of playing. It has its own region, never behind text: stacked above
+  the copy on narrow screens and in a sticky right column from 1500px, at full
+  opacity with no mask. On the light theme it stays visible as a framed dark
+  plate, since the loop is drawn on Void Black.
 
 ## Shapes
 
@@ -129,6 +132,9 @@ Wazoo uses a structured geometric language for user interface elements:
   gradients or heavy blur shadows to keep layouts feeling flat and mechanical.
 
 ## Do's and Don'ts
+
+- **Don't:** Put artwork behind text. Give it its own region (offset, split or
+  stacked) so copy keeps full contrast and the artwork keeps full strength.
 
 - **Do:** Use `letter-spacing: -0.025em` on monospaced text to keep it looking
   modern.
