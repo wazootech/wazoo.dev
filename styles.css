@@ -190,10 +190,10 @@ body {
     align-self: center;
     grid-column: 2;
     grid-row: 1;
-    margin: 0 1rem 0 -16rem;
+    margin: 0 0 0 -18rem;
     max-height: none;
     position: sticky;
-    top: calc(50vh - 20rem);
+    top: calc(50vh - 14rem);
     width: auto;
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%);
     mask-image: linear-gradient(to right, transparent 0, #000 30%);
