@@ -1,0 +1,8 @@
+node_modules/
+animations/out/
+# Vendored Clayzo agent skills installed by `clayzo init`
+animations/.agents/
+animations/.claude/
+animations/skills-lock.json
+deno.lock
+.wrangler/

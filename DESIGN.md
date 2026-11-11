@@ -103,6 +103,20 @@ Animation at Wazoo is split into two modalities:
   pulses between Umber (`#4B4332`) and Ink (`#1F1B14`).
 - **Glitch (Quirk):** Glitch badges display an RGB split and clip path
   distortion on hover.
+- **World loop (Clayzo):** The home page background plane is a seamless 24s,
+  30fps loop authored with [Clayzo](https://www.clayzo.com/) in
+  `animations/author-world.ts`: a hub, orbiting memory nodes (some with moons),
+  live edges, and recall pulses, in brand tokens only. The web is drawn through
+  Clayzo's `dithering` effect (2 levels, 3px screen) so it reads as a low-bit
+  printed plate in exactly three colors: the scene splits into orange and violet
+  signals before dithering, and a color matrix maps them to Void, Sunset Orange
+  (hub, hub edges, nodes) and Selection violet (orbit guides, side links, violet
+  nodes), so no off-brand hues appear. The cursor drifts it with a two-layer
+  parallax and carries a lens that sharpens the screen where you look. Players
+  without runtime effects draw the plain vector loop. Run `deno task motion` to
+  regenerate `motion/world.json` and `motion/player.js`. Playback makes no
+  request to Clayzo. Under `prefers-reduced-motion` it draws a still frame
+  instead of playing. Hidden on the light theme.
 
 ## Shapes
 

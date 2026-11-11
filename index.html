@@ -107,6 +107,14 @@
     </script>
   </head>
   <body>
+    <div class="world" aria-hidden="true">
+      <canvas
+        data-clayzo="/motion/world.json"
+        data-still="480"
+        width="840"
+        height="480"
+      ></canvas>
+    </div>
     <div class="container">
       <header class="header">
         <a href="/" class="logo">
@@ -390,6 +398,7 @@
         </div>
       </main>
     </div>
+    <script type="module" src="/motion/player.js"></script>
     <script>
     (function () {
       var prompt =

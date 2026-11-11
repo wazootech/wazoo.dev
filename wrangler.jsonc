@@ -1,0 +1,33 @@
+// Cloudflare Workers Builds config for wazoo.dev previews.
+//
+// Static assets only: no build step, no Worker script. Workers Builds runs
+// `npx wrangler preview` (open beta; needs the `previews` block below) on
+// non-production branches, so every pull request gets a preview URL.
+//
+// Previews are served at <branch>.preview.wazoo.dev. The route below is
+// preview-only: `enabled: false` keeps production traffic off the hostname,
+// and Cloudflare manages the *.preview.wazoo.dev DNS record and certificate.
+// Production is still GitHub Pages (CNAME); nothing here routes wazoo.dev
+// itself, so this cannot take over the apex until a cutover is approved.
+{
+  "$schema": "https://unpkg.com/wrangler@4.112.0/config-schema.json",
+  "name": "wazoo-dev",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": ".",
+    // Matches GitHub Pages: unknown paths get 404.html, which resolves
+    // shortlinks client-side.
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  "preview_urls": true,
+  "previews": {},
+  "routes": [
+    {
+      "pattern": "preview.wazoo.dev",
+      "custom_domain": true,
+      "previews_enabled": true,
+      "enabled": false
+    }
+  ]
+}
