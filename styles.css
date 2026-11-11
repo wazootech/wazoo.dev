@@ -147,8 +147,9 @@ body {
 }
 
 /* Clayzo world-model loop (source: animations/author-world.ts).
-   The loop has its own region and never sits behind text: stacked above the
-   copy on narrow screens, in a sticky right column on wide ones. */
+   The loop has its own region: stacked above the copy on narrow screens, in a
+   sticky right column on wide ones that may overlap the copy's right edge
+   through a soft fade, never sitting fully behind it. */
 .world {
   aspect-ratio: 7 / 4;
   background: #040404;
@@ -182,15 +183,20 @@ body {
     grid-template-columns: minmax(0, 56rem) 1fr;
   }
 
+  /* The loop may reach back under the right edge of the copy, but only through
+     a soft left fade, so text stays readable and never sits on full-strength
+     artwork. */
   .layout > .world {
     align-self: center;
     grid-column: 2;
     grid-row: 1;
-    margin: 0 4rem 0 0;
+    margin: 0 1rem 0 -16rem;
     max-height: none;
     position: sticky;
-    top: calc(50vh - 15rem);
+    top: calc(50vh - 20rem);
     width: auto;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%);
+    mask-image: linear-gradient(to right, transparent 0, #000 30%);
   }
 }
 

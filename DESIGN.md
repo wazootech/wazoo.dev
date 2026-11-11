@@ -118,8 +118,9 @@ Animation at Wazoo is split into two modalities:
   request to Clayzo. Under `prefers-reduced-motion` it draws a still frame
   instead of playing. It has its own region, never behind text: stacked above
   the copy on narrow screens and in a sticky right column from 1500px, at full
-  opacity with no mask. On the light theme it stays visible as a framed dark
-  plate, since the loop is drawn on Void Black.
+  opacity. In that column it may overlap the right edge of the copy by a small
+  amount, behind a soft left-edge fade. On the light theme it stays visible as a
+  framed dark plate, since the loop is drawn on Void Black.
 
 ## Shapes
 
@@ -134,7 +135,8 @@ Wazoo uses a structured geometric language for user interface elements:
 ## Do's and Don'ts
 
 - **Don't:** Put artwork behind text. Give it its own region (offset, split or
-  stacked) so copy keeps full contrast and the artwork keeps full strength.
+  stacked) so copy keeps full contrast and the artwork keeps full strength. A
+  slight overlap at an edge, behind a soft fade, is fine; full coverage is not.
 
 - **Do:** Use `letter-spacing: -0.025em` on monospaced text to keep it looking
   modern.
