@@ -399,6 +399,11 @@
         </div>
       </main>
     </div>
+    <script>
+    if (!matchMedia("(min-width: 1100px)").matches) {
+      document.querySelector(".world")?.remove();
+    }
+    </script>
     <script type="module" src="/motion/player.js"></script>
     <script>
     (function () {

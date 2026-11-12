@@ -116,11 +116,11 @@ Animation at Wazoo is split into two modalities:
   without runtime effects draw the plain vector loop. Run `deno task motion` to
   regenerate `motion/world.json` and `motion/player.js`. Playback makes no
   request to Clayzo. Under `prefers-reduced-motion` it draws a still frame
-  instead of playing. It has its own region, never behind text: stacked above
-  the copy on narrow screens and in a sticky right column from 1500px, at full
-  opacity. In that column it may overlap the right edge of the copy by a small
-  amount, behind a soft left-edge fade. On the light theme it stays visible as a
-  framed dark plate, since the loop is drawn on Void Black.
+  instead of playing. Desktop only (1100px and up); it is removed on narrower
+  screens. It sits in a fixed right-hand plate that bleeds off the top, right
+  and bottom edges and may overlap the right edge of the copy slightly, behind a
+  soft left-edge fade. On the light theme it stays a dark Void Black plate,
+  since the loop is drawn on Void Black.
 
 ## Shapes
 
