@@ -107,6 +107,14 @@
     </script>
   </head>
   <body>
+    <div class="world" aria-hidden="true">
+      <canvas
+        data-clayzo="/motion/world.json"
+        data-still="480"
+        width="840"
+        height="480"
+      ></canvas>
+    </div>
     <div class="container">
       <header class="header">
         <a href="/" class="logo">
@@ -138,15 +146,6 @@
             rel="noopener noreferrer"
           >Request access</a>
         </section>
-
-        <div class="world" aria-hidden="true">
-          <canvas
-            data-clayzo="/motion/world.json"
-            data-still="480"
-            width="840"
-            height="480"
-          ></canvas>
-        </div>
 
         <p class="paragraph">
           Large Language Models are geniuses in empty rooms. They process text
