@@ -207,6 +207,17 @@ body {
   }
 }
 
+/* The loop is drawn on Void Black. On the light theme, invert it (hue kept) so
+   the black becomes white, then multiply with the eggshell page so the white
+   takes the page color. This needs .world to be a direct child of <body>. */
+@media (prefers-color-scheme: light) {
+  .world {
+    background: #ffffff;
+    filter: invert(1) hue-rotate(180deg);
+    mix-blend-mode: multiply;
+  }
+}
+
 .beta-callout {
   border: 1px solid #ffaa00;
   background: #120d03;
