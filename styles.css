@@ -183,14 +183,17 @@ body {
     max-width: 40rem;
   }
 
+  /* Bleeds off the top, right and bottom edges; only the left edge is
+     bounded (and faded), so the copy stays unobstructed. */
   .world {
+    aspect-ratio: auto;
+    bottom: -12vh;
     left: 32rem;
     margin: 0;
     max-height: none;
     position: fixed;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    right: -6vw;
+    top: -12vh;
     z-index: -1;
     -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%);
     mask-image: linear-gradient(to right, transparent 0, #000 30%);
