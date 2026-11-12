@@ -12,12 +12,21 @@ async function mount(canvas: HTMLCanvasElement) {
   try {
     const doc = await (await fetch(canvas.dataset.clayzo!)).json();
     // Decorative backdrop: listen on the whole page (the canvas ignores pointer
-    // events) and cap the pixel ratio, since it renders at full-viewport size.
+    // events).
+    // The player renders at document resolution unless told otherwise, and the
+    // canvas is shown much larger than that, so ask for the display size
+    // (cover-fit, device pixel ratio capped at 2, scale capped at 3) to stay
+    // crisp instead of upscaling a small frame.
+    const box = canvas.getBoundingClientRect();
+    const scale = Math.max(
+      box.width / doc.canvas.width,
+      box.height / doc.canvas.height,
+    ) * Math.min(devicePixelRatio || 1, 2);
     const player = await createPlayer({
       canvas,
       document: doc,
       loop: true,
-      maxPixelRatio: 1,
+      resolution: Math.min(3, Math.max(1, scale)),
       interactive: !reduced.matches,
       interactionElement: reduced.matches
         ? undefined
