@@ -147,23 +147,21 @@ body {
 }
 
 /* Clayzo world-model loop (source: animations/author-world.ts).
-   A decorative background plane behind the content. */
+   Desktop only (1100px and up): a fixed plate in the right column that bleeds
+   off the top, right and bottom edges and may overlap the copy's right edge
+   through a soft fade, never sitting fully behind text. Not shown on narrow
+   screens (index.html also removes it there so nothing is downloaded). */
 .world {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
+  display: none;
+  background: #040404;
   pointer-events: none;
   opacity: 0;
   animation: worldIn 1.5s ease 0.3s forwards;
-  /* Fade the edges so the canvas never reads as a box. */
-  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent
-    75%);
-  mask-image: radial-gradient(ellipse at 50% 50%, #000 35%, transparent 75%);
 }
 
 @keyframes worldIn {
   to {
-    opacity: 0.4;
+    opacity: 1;
   }
 }
 
@@ -178,10 +176,34 @@ body {
   object-fit: cover;
 }
 
-/* The loop is drawn on void black; on the eggshell theme it would be a dark slab. */
-@media (prefers-color-scheme: light) {
+@media (min-width: 1100px) {
+  .container {
+    max-width: 40rem;
+  }
+
+  /* Bleeds off the top, right and bottom edges; only the left edge is
+     bounded (and faded), so the copy stays unobstructed. */
   .world {
-    display: none;
+    display: block;
+    bottom: -12vh;
+    left: 32rem;
+    overflow: hidden;
+    position: fixed;
+    right: -6vw;
+    top: -12vh;
+    z-index: -1;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 30%);
+    mask-image: linear-gradient(to right, transparent 0, #000 30%);
+  }
+}
+
+@media (min-width: 1500px) {
+  .container {
+    max-width: 56rem;
+  }
+
+  .world {
+    left: 38rem;
   }
 }
 
