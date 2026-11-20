@@ -25,17 +25,27 @@
       background: var(--wz-bg);
       color: var(--wz-text);
       font-family: var(--wz-font-body);
+      font-size: var(--wz-text-body);
+      letter-spacing: var(--wz-tracking-body);
       line-height: 1.6;
     }
     a {
-      color: var(--wz-heading);
+      color: var(--wz-primary);
+      text-decoration-color: var(--wz-primary);
       text-underline-offset: 0.2em;
+    }
+    @media (prefers-color-scheme: light) {
+      body,
+      a {
+        color: var(--wz-heading);
+      }
     }
     h1,
     h2 {
       color: var(--wz-heading);
       font-family: var(--wz-font-heading);
       font-weight: 600;
+      letter-spacing: var(--wz-tracking-heading);
       line-height: 1.2;
     }
     h1 {
