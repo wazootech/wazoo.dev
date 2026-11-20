@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team - Wazoo</title>
+    <meta name="description" content="Meet the team behind Wazoo Technologies.">
+    <link rel="canonical" href="https://wazoo.dev/team/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@600&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/design-system/tokens.css">
+    <style>
+    :root {
+      color-scheme: dark light;
+    }
+    body {
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: var(--wz-space-8) var(--wz-space-4);
+      background: var(--wz-bg);
+      color: var(--wz-text);
+      font-family: var(--wz-font-body);
+      line-height: 1.6;
+    }
+    a {
+      color: var(--wz-heading);
+      text-underline-offset: 0.2em;
+    }
+    h1,
+    h2 {
+      color: var(--wz-heading);
+      font-family: var(--wz-font-heading);
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    h1 {
+      margin: var(--wz-space-12) 0 var(--wz-space-6);
+      font-size: var(--wz-text-h1);
+    }
+    h2 {
+      margin: 0;
+      font-size: var(--wz-text-h2);
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+      gap: var(--wz-space-4);
+    }
+    article {
+      padding: var(--wz-space-6);
+      background: var(--wz-surface);
+      border: var(--wz-border-width) solid var(--wz-border);
+      border-radius: var(--wz-radius);
+    }
+    .role {
+      margin-top: var(--wz-space-2);
+      font-weight: 500;
+    }
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--wz-space-2) var(--wz-space-4);
+      margin-bottom: 0;
+    }
+    </style>
+  </head>
+  <body>
+    <header><a href="/">Wazoo</a></header>
+    <main>
+      <h1>Team</h1>
+      <div class="team-grid">
+        <article>
+          <h2>Ethan Davidson</h2>
+          <p class="role">Founding Engineer</p>
+          <p class="profile-links">
+            <a href="https://github.com/EthanThatOneKid"
+              aria-label="GitHub profile for Ethan Davidson">GitHub</a>
+            <a href="https://etok.me/"
+              aria-label="Website for Ethan Davidson">Website</a>
+            <a href="https://x.com/etok_me"
+              aria-label="X profile for Ethan Davidson">X</a>
+          </p>
+        </article>
+        <article>
+          <h2>John Carlo Manuel</h2>
+          <p class="role">Software Engineer</p>
+          <p class="profile-links">
+            <a href="https://github.com/johncmanuel"
+              aria-label="GitHub profile for John Carlo Manuel">GitHub</a>
+            <a href="https://johncarlomanuel.com/"
+              aria-label="Website for John Carlo Manuel">Website</a>
+            <a href="https://x.com/johncmanuel"
+              aria-label="X profile for John Carlo Manuel">X</a>
+          </p>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
