@@ -128,7 +128,14 @@
     <script type="module">
     import { go } from "@fartlabs/go";
     const shortlinks = await (await fetch("/shortlinks.json")).json();
-    const result = go(new URL(location.href), shortlinks);
+    let result = null;
+    try {
+      result = go(new URL(location.href), shortlinks);
+    } catch (error) {
+      // A broken or cyclic shortlink must never leave the page stuck on the
+      // spinner: fall through and show the 404 content instead.
+      result = null;
+    }
     if (result && result !== location.href) {
       location.replace(result);
     } else {
