@@ -127,38 +127,31 @@
     </script>
     <script type="module">
     import { go } from "@fartlabs/go";
-    const shortlinks = await (await fetch("/shortlinks.json")).json();
-    let result = null;
+
     try {
-      result = go(new URL(location.href), shortlinks);
-    } catch (error) {
-      // A broken or cyclic shortlink must never leave the page stuck on the
-      // spinner: fall through and show the 404 content instead.
-      result = null;
-    }
-    if (result && result !== location.href) {
-      location.replace(result);
-    } else {
-      document.getElementById("spinner").style.display = "none";
-      document.getElementById("heading").textContent = "404 Not Found";
-      document.getElementById("message").textContent = "This page does not exist.";
-      document.getElementById("home-link").style.display = "inline";
+      const response = await fetch("/shortlinks.json");
+      if (response.ok) {
+        const current = new URL(location.href);
+        const destination = go(current, await response.json());
+        // go() returns a URL (the same one when nothing matches), so compare
+        // origin and path, not an object against a string.
+        if (
+          destination.origin !== current.origin ||
+          destination.pathname !== current.pathname
+        ) {
+          location.replace(destination.href);
+        }
+      }
+    } catch {
+      // Leave the 404 visible if the shortlink map cannot be loaded or resolved.
     }
     </script>
   </head>
   <body>
     <div class="card">
-      <div id="spinner" class="spinner"></div>
-      <h1 id="heading">Redirecting...</h1>
-      <p id="message">Taking you where you need to go.</p>
-      <p><a id="home-link" href="/" style="display:none;">Go to home page</a></p>
+      <h1>404 Not Found</h1>
+      <p>This page does not exist.</p>
+      <p><a href="/">Go to home page</a></p>
     </div>
-    <noscript>
-      <div class="card">
-        <h1>404 Not Found</h1>
-        <p>This page does not exist.</p>
-        <p><a href="/">Go to home page</a></p>
-      </div>
-    </noscript>
   </body>
 </html>
