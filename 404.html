@@ -127,24 +127,14 @@
     </script>
     <script type="module">
     import { go } from "@fartlabs/go";
+    import shortlinks from "/shortlinks.json" with { type: "json" };
 
-    try {
-      const response = await fetch("/shortlinks.json");
-      if (response.ok) {
-        const current = new URL(location.href);
-        const destination = go(current, await response.json());
-        // go() returns a URL (the same one when nothing matches), so compare
-        // origin and path, not an object against a string.
-        if (
-          destination.origin !== current.origin ||
-          destination.pathname !== current.pathname
-        ) {
-          location.replace(destination.href);
-        }
-      }
-    } catch {
-      // Leave the 404 visible if the shortlink map cannot be loaded or resolved.
-    }
+    // go() returns a URL (the same one when nothing matches), so compare
+    // hrefs, not a URL object against a string. If the import or go() fails,
+    // the 404 content already on the page stays visible.
+    const current = new URL(location.href);
+    const destination = go(current, shortlinks);
+    if (destination.href !== current.href) location.replace(destination.href);
     </script>
   </head>
   <body>
