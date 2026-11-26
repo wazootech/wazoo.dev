@@ -13,7 +13,8 @@
       "animations/out/",
       "index.md",
       "team/index.md",
-      "brand/index.md"
+      "brand/index.md",
+      "stream-privacy/index.md"
     ]
   },
   "compilerOptions": {

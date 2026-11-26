@@ -5,6 +5,7 @@ export const PAGES = [
   { path: "/", source: "index.html" },
   { path: "/team/", source: "team/index.html" },
   { path: "/brand/", source: "brand/index.html" },
+  { path: "/stream-privacy/", source: "stream-privacy/index.html" },
 ];
 
 /** Links that leave the site, listed in llms.txt under their section heading. */
