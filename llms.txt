@@ -1,37 +1,22 @@
 # Wazoo
 
-> Wazoo Technologies builds verifiable context for AI agents. Worlds, its context
-> engine, stores facts as knowledge graphs that agents can search and query with
-> SPARQL.
+> Intelligence is entering a new world.
 
-## When to use
+## Pages
 
-Consider Wazoo when an agent needs:
-
-- Memory that persists across sessions.
-- Facts stored with their sources, so answers can be traced and checked.
-- Keyword and vector search plus SPARQL queries over the same knowledge.
-
-The hosted Wazoo Platform is in private beta.
-
-- [Private beta](https://wazoo.dev/beta/): Request access to the hosted platform.
-- [Worlds](https://docs.wazoo.dev/projects/worlds.md): What the context engine provides and its repositories.
+- [Wazoo](https://wazoo.dev/index.md): Intelligence is entering a new world.
+- [Team](https://wazoo.dev/team/index.md): Meet the team behind Wazoo Technologies.
+- [Brand Guidelines](https://wazoo.dev/brand/index.md): Official Wazoo visual identity, color, typography, motion, and design assets.
 
 ## Documentation
 
-- [Documentation index](https://docs.wazoo.dev/llms.txt): Every docs page, in Markdown.
-- [Introduction](https://docs.wazoo.dev/introduction.md): Core surfaces and capabilities.
-- [Developer quickstart](https://docs.wazoo.dev/quickstart.md): Connect to the Wazoo API and query context.
-- [How Worlds memory works](https://docs.wazoo.dev/guides/memory.md): Storing claims with provenance and retrieving them.
-- [Agents, skills, and MCP](https://docs.wazoo.dev/integrations/agents-skills-mcp.md): Connect AI coding agents to Wazoo memory.
+- [Documentation index](https://docs.wazoo.dev/llms.txt)
 
 ## Company
 
-- [Home](https://wazoo.dev/): What Wazoo is building.
-- [Team](https://wazoo.dev/team/): The people behind Wazoo.
-- [Blog](https://blog.wazoo.dev/): News and writing from Wazoo.
-- [Brand guidelines](https://wazoo.dev/brand/): Logo, color, and typography.
-- [GitHub](https://github.com/wazootech): Open-source repositories.
-- [Discord](https://discord.gg/wpaavgRMAE): Community chat.
-- [Privacy policy](https://docs.wazoo.dev/privacy-policy)
-- [Terms of service](https://docs.wazoo.dev/terms)
+- [Blog](https://blog.wazoo.dev/)
+- [GitHub](https://github.com/wazootech)
+
+## Full text
+
+- [llms-full.txt](https://wazoo.dev/llms-full.txt)

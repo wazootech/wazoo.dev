@@ -10,6 +10,8 @@ This repository contains the public Wazoo website.
   positioning.
 - Use `deno.json` as the source of truth for local tasks.
 - Run `deno fmt` when editing source or content.
+- After editing a page, run `deno task generate` and `deno task test`. Never
+  edit the generated `llms*.txt`, `sitemap.xml`, or `index.md` files by hand.
 - For visual changes, run the local dev task and inspect the rendered page
   before finishing when practical.
 
@@ -25,5 +27,5 @@ this repo's specifics:
 - Actions in `.github/workflows/` are pinned to commit SHAs and CI uses Deno
   v2.9.8; `renovate.json` keeps them current.
 - `.github/CODEOWNERS` assigns `* @EthanThatOneKid`.
-- There is no `code-health.yml`: the only JavaScript is the shipped `snake.js`
-  asset.
+- There is no `code-health.yml`: the code is the shipped `snake.js` asset and
+  the small generator in `scripts/`.

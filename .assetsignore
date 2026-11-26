@@ -12,6 +12,9 @@ node_modules
 .env*
 animations
 *.md
+# Generated Markdown versions of the pages are part of the site.
+!index.md
+scripts
 deno.json
 deno.lock
 wrangler.jsonc

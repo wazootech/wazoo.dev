@@ -1,9 +1,28 @@
 {
   "tasks": {
     "dev": "deno run --allow-net --allow-read jsr:@std/http/file-server",
-    "motion": "cd animations && npm install && npm run build"
+    "motion": "cd animations && npm install && npm run build",
+    "generate": "deno run --allow-read --allow-write scripts/generate.ts",
+    "check": "deno lint scripts && deno check scripts",
+    "test": "deno test --allow-read scripts"
   },
   "fmt": {
-    "exclude": ["motion/", "animations/node_modules/", "animations/out/"]
+    "exclude": [
+      "motion/",
+      "animations/node_modules/",
+      "animations/out/",
+      "index.md",
+      "team/index.md",
+      "brand/index.md"
+    ]
+  },
+  "compilerOptions": {
+    "lib": ["deno.ns", "dom", "dom.iterable"]
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1.0.14",
+    "linkedom": "npm:linkedom@0.18.15",
+    "turndown": "npm:turndown@7.2.5",
+    "turndown-plugin-gfm": "npm:turndown-plugin-gfm@1.0.2"
   }
 }
