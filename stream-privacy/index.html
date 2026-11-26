@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="alternate" type="text/markdown"
+      href="https://wazoo.dev/stream-privacy/index.md">
+    <link rel="describedby" href="https://wazoo.dev/llms.txt">
+    <title>Wazoo Stream privacy policy - Wazoo</title>
+    <meta name="description"
+      content="What the Wazoo Stream alerts tool reads from YouTube, where it keeps it, and how to remove it.">
+    <link rel="canonical" href="https://wazoo.dev/stream-privacy/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@600&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/design-system/tokens.css">
+    <style>
+    :root {
+      color-scheme: dark light;
+    }
+    body {
+      max-width: 48rem;
+      margin: 0 auto;
+      padding: var(--wz-space-8) var(--wz-space-4);
+      background: var(--wz-bg);
+      color: var(--wz-text);
+      font-family: var(--wz-font-body);
+      font-size: var(--wz-text-body);
+      letter-spacing: var(--wz-tracking-body);
+      line-height: 1.6;
+    }
+    a {
+      color: var(--wz-primary);
+      text-decoration-color: var(--wz-primary);
+      text-underline-offset: 0.2em;
+    }
+    @media (prefers-color-scheme: light) {
+      body,
+      a {
+        color: var(--wz-heading);
+      }
+    }
+    h1,
+    h2 {
+      color: var(--wz-heading);
+      font-family: var(--wz-font-heading);
+      font-weight: 600;
+      letter-spacing: var(--wz-tracking-heading);
+      line-height: 1.2;
+    }
+    h1 {
+      margin: var(--wz-space-12) 0 var(--wz-space-6);
+      font-size: var(--wz-text-h1);
+    }
+    h2 {
+      margin: var(--wz-space-8) 0 var(--wz-space-4);
+      font-size: var(--wz-text-h2);
+    }
+    </style>
+  </head>
+  <body>
+    <header><a href="/">Wazoo</a></header>
+    <main>
+      <h1>Wazoo Stream privacy policy</h1>
+      <p>Last updated: November 26, 2026.</p>
+      <p>
+        Wazoo Stream is a small tool that Wazoo runs on its own streaming
+        computer to show on-screen alerts during Wazoo's YouTube live streams.
+        Its source code is public at
+        <a href="https://github.com/wazootech/stream">github.com/wazootech/stream</a>.
+        It is operated by the channel owner and is not offered as a service to
+        others.
+      </p>
+      <p>
+        Wazoo Stream uses YouTube API Services. By using it you agree to the
+        <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>.
+        Google's handling of data is described in the
+        <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.
+      </p>
+
+      <h2>What it reads</h2>
+      <p>
+        The channel owner signs in with Google and grants read-only access to
+        their YouTube account. The tool cannot post, edit, or delete anything.
+        With that access it reads:
+      </p>
+      <ul>
+        <li>the name of the signed-in channel;</li>
+        <li>the channel's active live broadcast and its live chat messages;</li>
+        <li>
+          from those messages, the details used for alerts: display names, Super
+          Chat and Super Sticker amounts and text, membership levels, milestones
+          and comments, and gifted membership counts;
+        </li>
+        <li>
+          the channel's recent subscribers who have made their subscriptions
+          public, including their channel names and channel identifiers.
+        </li>
+      </ul>
+      <p>Chat messages that do not produce an alert are discarded.</p>
+
+      <h2>How it is used and shared</h2>
+      <p>
+        The information is used only to show alerts. An alert displays a name and
+        its details on the live stream, so it also appears in recordings,
+        archives, and clips of that stream. Wazoo Stream has no server of its
+        own, runs no analytics or advertising, does not sell data, and sends
+        nothing to anyone other than Google beyond what is shown on the stream.
+      </p>
+
+      <h2>What is stored</h2>
+      <ul>
+        <li>
+          Sign-in tokens, in a file in the operator's user folder on the
+          streaming computer.
+        </li>
+        <li>
+          Up to the 20 most recent alerts (type, display name, and details), in
+          local files on that computer. Clearing alerts or resetting the stream
+          session removes them.
+        </li>
+        <li>
+          Message and subscriber identifiers, held in memory to avoid showing an
+          alert twice, and gone when the tool stops.
+        </li>
+      </ul>
+      <p>
+        The tool and its files use no cookies and no tracking technology.
+      </p>
+
+      <h2>Removing access and data</h2>
+      <p>
+        Access can be revoked at any time on Google's
+        <a href="https://security.google.com/settings/security/permissions">security
+          settings page</a>. After access is revoked, the operator deletes the
+        stored tokens and alerts within 30 days. To ask for an alert that shows
+        your name to be removed from local storage, or from a published recording
+        or clip, contact us.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Ask in the <a href="https://discord.gg/wpaavgRMAE">Wazoo Discord</a> or
+        open an issue at
+        <a href="https://github.com/wazootech/stream/issues">github.com/wazootech/stream/issues</a>.
+        GitHub issues are public, so leave out anything private.
+      </p>
+    </main>
+  </body>
+</html>

@@ -7,6 +7,7 @@
 - [Wazoo](https://wazoo.dev/index.md): Intelligence is entering a new world.
 - [Team](https://wazoo.dev/team/index.md): Meet the team behind Wazoo Technologies.
 - [Brand Guidelines](https://wazoo.dev/brand/index.md): Official Wazoo visual identity, color, typography, motion, and design assets.
+- [Wazoo Stream privacy policy](https://wazoo.dev/stream-privacy/index.md): What the Wazoo Stream alerts tool reads from YouTube, where it keeps it, and how to remove it.
 
 ## Documentation
 
