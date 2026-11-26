@@ -4,5 +4,4 @@ animations/out/
 animations/.agents/
 animations/.claude/
 animations/skills-lock.json
-deno.lock
 .wrangler/

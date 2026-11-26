@@ -15,3 +15,6 @@ jobs:
         with:
           deno-version: v2.9.8
       - run: deno fmt --check
+      - run: deno install --frozen
+      - run: deno task check
+      - run: deno task test

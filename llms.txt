@@ -1,0 +1,22 @@
+# Wazoo
+
+> Intelligence is entering a new world.
+
+## Pages
+
+- [Wazoo](https://wazoo.dev/index.md): Intelligence is entering a new world.
+- [Team](https://wazoo.dev/team/index.md): Meet the team behind Wazoo Technologies.
+- [Brand Guidelines](https://wazoo.dev/brand/index.md): Official Wazoo visual identity, color, typography, motion, and design assets.
+
+## Documentation
+
+- [Documentation index](https://docs.wazoo.dev/llms.txt)
+
+## Company
+
+- [Blog](https://blog.wazoo.dev/)
+- [GitHub](https://github.com/wazootech)
+
+## Full text
+
+- [llms-full.txt](https://wazoo.dev/llms-full.txt)
