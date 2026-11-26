@@ -28,14 +28,14 @@ The information is used only to show alerts. An alert displays a name and its de
 ## What is stored
 
 -   Sign-in tokens, in a file in the operator's user folder on the streaming computer.
--   Up to the 20 most recent alerts (type, display name, and details), in local files on that computer. Clearing alerts or resetting the stream session removes them.
+-   Up to the 20 most recent alerts (type, display name, and details), in local files on that computer. Clearing alerts or resetting the stream session removes them, and the operator does this at least every 30 days.
 -   Message and subscriber identifiers, held in memory to avoid showing an alert twice, and gone when the tool stops.
 
 The tool and its files use no cookies and no tracking technology.
 
 ## Removing access and data
 
-Access can be revoked at any time on Google's [security settings page](https://security.google.com/settings/security/permissions). After access is revoked, the operator deletes the stored tokens and alerts within 30 days. To ask for an alert that shows your name to be removed from local storage, or from a published recording or clip, contact us.
+Access can be revoked at any time on Google's [security settings page](https://security.google.com/settings/security/permissions). After access is revoked, the operator deletes the stored tokens and alerts within 30 days. To ask for an alert that shows your name to be removed from local storage, or from a published recording or clip, contact us. We remove it within 7 days of your request.
 
 ## Contact
 
