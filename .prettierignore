@@ -1,0 +1,14 @@
+# The set deno fmt skipped, plus files it never formatted.
+motion/
+animations/node_modules/
+animations/out/
+index.md
+team/index.md
+brand/index.md
+stream-privacy/index.md
+animations/
+*.html
+bun.lock
+llms.txt
+llms-full.txt
+sitemap.xml

@@ -1,0 +1,3 @@
+[install]
+# One-day supply-chain delay.
+minimumReleaseAge = 86400

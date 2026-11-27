@@ -17,7 +17,7 @@
     "directory": ".",
     // Matches GitHub Pages: unknown paths get 404.html, which resolves
     // shortlinks client-side.
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
   },
   "workers_dev": true,
   "preview_urls": true,
@@ -27,7 +27,7 @@
       "pattern": "preview.wazoo.dev",
       "custom_domain": true,
       "previews_enabled": true,
-      "enabled": false
-    }
-  ]
+      "enabled": false,
+    },
+  ],
 }

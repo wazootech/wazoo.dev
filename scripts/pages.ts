@@ -12,10 +12,12 @@ export const PAGES = [
 export const EXTERNAL_LINKS = [
   {
     section: "Documentation",
-    links: [{
-      name: "Documentation index",
-      url: "https://docs.wazoo.dev/llms.txt",
-    }],
+    links: [
+      {
+        name: "Documentation index",
+        url: "https://docs.wazoo.dev/llms.txt",
+      },
+    ],
   },
   {
     section: "Company",

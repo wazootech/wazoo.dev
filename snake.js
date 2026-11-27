@@ -22,9 +22,7 @@
   const MIN_SPEED = 60; // max speed limit
 
   // Memory node labels for food items (referencing Wazoo & Worlds concepts)
-  const NODE_LABELS = [
-    "FOOD",
-  ];
+  const NODE_LABELS = ["FOOD"];
 
   // Game State
   let modalEl = null;
@@ -337,9 +335,9 @@
 
         <div class="snake-scores-bar">
           <div>SCORE: <span class="snake-score-val" id="snake-score-text">000</span></div>
-          <div>HIGH: <span class="snake-score-val" id="snake-highscore-text">${
-      String(highScore).padStart(3, "0")
-    }</span></div>
+          <div>HIGH: <span class="snake-score-val" id="snake-highscore-text">${String(
+            highScore,
+          ).padStart(3, "0")}</span></div>
         </div>
 
         <div class="snake-canvas-wrapper">
@@ -369,10 +367,9 @@
     soundToggleEl = modalEl.querySelector("#snake-sound-toggle");
 
     // Listeners inside modal
-    modalEl.querySelector("#snake-close-btn").addEventListener(
-      "click",
-      closeGame,
-    );
+    modalEl
+      .querySelector("#snake-close-btn")
+      .addEventListener("click", closeGame);
     soundToggleEl.addEventListener("click", toggleSound);
 
     modalEl.addEventListener("click", (e) => {
@@ -380,44 +377,48 @@
     });
 
     // Touch D-Pad
-    modalEl.querySelector("#dpad-up").addEventListener(
-      "click",
-      () => handleInput("UP"),
-    );
-    modalEl.querySelector("#dpad-left").addEventListener(
-      "click",
-      () => handleInput("LEFT"),
-    );
-    modalEl.querySelector("#dpad-down").addEventListener(
-      "click",
-      () => handleInput("DOWN"),
-    );
-    modalEl.querySelector("#dpad-right").addEventListener(
-      "click",
-      () => handleInput("RIGHT"),
-    );
+    modalEl
+      .querySelector("#dpad-up")
+      .addEventListener("click", () => handleInput("UP"));
+    modalEl
+      .querySelector("#dpad-left")
+      .addEventListener("click", () => handleInput("LEFT"));
+    modalEl
+      .querySelector("#dpad-down")
+      .addEventListener("click", () => handleInput("DOWN"));
+    modalEl
+      .querySelector("#dpad-right")
+      .addEventListener("click", () => handleInput("RIGHT"));
 
     // Canvas Touch Swipe
     let touchStartX = 0;
     let touchStartY = 0;
-    canvasEl.addEventListener("touchstart", (e) => {
-      if (e.touches.length > 0) {
-        touchStartX = e.touches[0].clientX;
-        touchStartY = e.touches[0].clientY;
-      }
-    }, { passive: true });
-
-    canvasEl.addEventListener("touchend", (e) => {
-      if (e.changedTouches.length > 0) {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        const dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) > Math.abs(dy)) {
-          if (Math.abs(dx) > 20) handleInput(dx > 0 ? "RIGHT" : "LEFT");
-        } else {
-          if (Math.abs(dy) > 20) handleInput(dy > 0 ? "DOWN" : "UP");
+    canvasEl.addEventListener(
+      "touchstart",
+      (e) => {
+        if (e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
         }
-      }
-    }, { passive: true });
+      },
+      { passive: true },
+    );
+
+    canvasEl.addEventListener(
+      "touchend",
+      (e) => {
+        if (e.changedTouches.length > 0) {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          const dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.abs(dx) > Math.abs(dy)) {
+            if (Math.abs(dx) > 20) handleInput(dx > 0 ? "RIGHT" : "LEFT");
+          } else {
+            if (Math.abs(dy) > 20) handleInput(dy > 0 ? "DOWN" : "UP");
+          }
+        }
+      },
+      { passive: true },
+    );
 
     modalEl.focus();
   }
@@ -773,7 +774,8 @@
     // Quick shortcut Ctrl+Shift+S or ~
     if (
       (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === "s") ||
-      e.key === "`" || e.key === "~"
+      e.key === "`" ||
+      e.key === "~"
     ) {
       e.preventDefault();
       openGame();
@@ -825,7 +827,8 @@
     attachHeaderClickTrigger();
   });
   if (
-    document.readyState === "interactive" || document.readyState === "complete"
+    document.readyState === "interactive" ||
+    document.readyState === "complete"
   ) {
     attachHeaderClickTrigger();
   }

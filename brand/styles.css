@@ -44,7 +44,7 @@ html {
 }
 
 body {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 1.0625rem;
   line-height: 1.7;
   letter-spacing: -0.02em;
@@ -59,7 +59,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
     sans-serif;
   font-weight: 600;
   line-height: 1.2;
@@ -96,7 +100,7 @@ a:hover {
 
 /* Code */
 code {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 0.875em;
   background: var(--surface);
   border: 1px solid var(--border-subtle);
@@ -187,7 +191,7 @@ pre::-webkit-scrollbar-thumb:hover {
 }
 
 .logo-wordmark {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 0.9375rem;
   letter-spacing: 0.04em;
@@ -205,13 +209,16 @@ pre::-webkit-scrollbar-thumb:hover {
   gap: 0.25rem;
 }
 .nav-links a {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 400;
   color: var(--text-muted);
   padding: 0.375rem 0.75rem;
   border-radius: 4px;
-  transition: color 0.2s, background 0.2s, transform 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s,
+    transform 0.2s;
 }
 .nav-links a:hover {
   color: var(--white);
@@ -247,7 +254,9 @@ pre::-webkit-scrollbar-thumb:hover {
   height: 2px;
   background: var(--text);
   margin: 4px auto;
-  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s;
+  transition:
+    transform 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 0.3s;
 }
 
 @media (max-width: 768px) {
@@ -330,7 +339,7 @@ table {
   font-size: 0.9375rem;
 }
 th {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 0.75rem;
   text-transform: uppercase;
@@ -347,7 +356,7 @@ td {
 }
 td:first-child {
   color: var(--primary-light);
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 0.875em;
 }
 tr:last-child td {
@@ -384,7 +393,7 @@ tr:hover td {
 }
 .card a {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   margin-top: 0.75rem;

@@ -1,49 +1,51 @@
-import { assert, assertEquals, assertThrows } from "@std/assert";
+import { ok, strictEqual, throws } from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { test } from "node:test";
 import { buildArtifacts } from "./artifacts.ts";
 import { readPage, resolveHref } from "./markdown.ts";
 import { absolute, markdownPathFor, PAGES } from "./pages.ts";
 
 const root = new URL("../", import.meta.url);
-const read = (path: string) => Deno.readTextFileSync(new URL(path, root));
+const read = (path: string) => readFileSync(new URL(path, root), "utf8");
 
-Deno.test("committed files match the pages (run `deno task generate`)", () => {
+test("committed files match the pages (run `bun run generate`)", () => {
   for (const [path, content] of buildArtifacts(root)) {
-    assertEquals(read(path), content, `${path} is out of date`);
+    strictEqual(read(path), content, `${path} is out of date`);
   }
 });
 
-Deno.test("each page advertises its Markdown version and llms.txt", () => {
+test("each page advertises its Markdown version and llms.txt", () => {
   for (const page of PAGES) {
     const html = read(page.source).replace(/\s+/g, " ");
     const markdown = absolute(markdownPathFor(page.path));
-    assert(
+    ok(
       html.includes(
         `<link rel="alternate" type="text/markdown" href="${markdown}"`,
       ),
       `${page.source} is missing its Markdown alternate link`,
     );
-    assert(
+    ok(
       html.includes(`<link rel="describedby" href="${absolute("/llms.txt")}"`),
       `${page.source} is missing its llms.txt link`,
     );
   }
 });
 
-Deno.test("page links point at Markdown, other links stay absolute", () => {
-  assertEquals(resolveHref("/team", "/"), "https://wazoo.dev/team/index.md");
-  assertEquals(resolveHref("/", "/brand/"), "https://wazoo.dev/index.md");
-  assertEquals(
+test("page links point at Markdown, other links stay absolute", () => {
+  strictEqual(resolveHref("/team", "/"), "https://wazoo.dev/team/index.md");
+  strictEqual(resolveHref("/", "/brand/"), "https://wazoo.dev/index.md");
+  strictEqual(
     resolveHref("#colors", "/brand/"),
     "https://wazoo.dev/brand/#colors",
   );
-  assertEquals(
+  strictEqual(
     resolveHref("/wazoo.svg", "/brand/"),
     "https://wazoo.dev/wazoo.svg",
   );
-  assertEquals(resolveHref("https://etok.me/", "/team/"), "https://etok.me/");
+  strictEqual(resolveHref("https://etok.me/", "/team/"), "https://etok.me/");
 });
 
-Deno.test("scripts, hidden content, and unfilled links are dropped", () => {
+test("scripts, hidden content, and unfilled links are dropped", () => {
   const page = readPage(
     `<meta name="description" content="About."><h1>Title</h1><main>
       <p>Kept</p><script>hidden()</script><p aria-hidden="true">Hidden</p>
@@ -51,14 +53,10 @@ Deno.test("scripts, hidden content, and unfilled links are dropped", () => {
     </main>`,
     "/",
   );
-  assertEquals(page.title, "Title");
-  assertEquals(page.body, "Kept\n\n[X](https://x.com/)");
+  strictEqual(page.title, "Title");
+  strictEqual(page.body, "Kept\n\n[X](https://x.com/)");
 });
 
-Deno.test("a page without a description fails loudly", () => {
-  assertThrows(
-    () => readPage("<h1>Title</h1><main></main>", "/"),
-    Error,
-    "description",
-  );
+test("a page without a description fails loudly", () => {
+  throws(() => readPage("<h1>Title</h1><main></main>", "/"), /description/);
 });

@@ -52,7 +52,9 @@ body {
 .logo svg {
   width: 40px;
   height: 40px;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
 }
 
 .logo:hover svg {
@@ -137,7 +139,9 @@ body {
 .link {
   color: #b0b0b1;
   text-decoration: underline;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
   text-underline-offset: 3px;
 }
 
@@ -262,7 +266,9 @@ body {
   margin-top: 0.25rem;
   padding: 0.45rem 0.7rem;
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .beta-button:hover {
@@ -313,7 +319,9 @@ body {
   font-size: 0.875rem;
   font-weight: 600;
   margin-right: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .new-badge:hover {
@@ -364,7 +372,9 @@ body {
 
 .social-link {
   color: #b0b0b1;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -428,7 +438,10 @@ body {
 
 /* Void/Spacing Effect */
 .quirk-void {
-  transition: letter-spacing 0.8s ease, opacity 0.8s ease, filter 0.8s ease;
+  transition:
+    letter-spacing 0.8s ease,
+    opacity 0.8s ease,
+    filter 0.8s ease;
   display: inline-block;
 }
 
@@ -467,8 +480,7 @@ body {
 }
 
 .quirk-glitch:hover {
-  animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
-    infinite;
+  animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
   color: #ff00ff;
   background: #000;
 }
@@ -615,20 +627,20 @@ body {
 /* Light Mode System Preference (Eggshell theme) */
 @media (prefers-color-scheme: light) {
   body {
-    background-color: #F7F2E8; /* Eggshell */
-    color: #1F1B14; /* Ink */
+    background-color: #f7f2e8; /* Eggshell */
+    color: #1f1b14; /* Ink */
   }
   .company-name,
   .tools-list li {
-    color: #1F1B14;
+    color: #1f1b14;
   }
   .paragraph {
-    color: #4B4332; /* Umber */
+    color: #4b4332; /* Umber */
   }
   .link,
   .nav-link,
   .social-link {
-    color: #4B4332;
+    color: #4b4332;
   }
   .link:hover,
   .nav-link:hover,
@@ -655,12 +667,12 @@ body {
     opacity: 1;
     transform: scale(1);
     font-weight: 400;
-    color: #4B4332;
+    color: #4b4332;
   }
   50% {
     opacity: 0.85;
     transform: scale(1.04);
     font-weight: 500;
-    color: #1F1B14;
+    color: #1f1b14;
   }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "wazoo.dev",
+  "private": true,
+  "type": "module",
+  "packageManager": "bun@1.4.5",
+  "scripts": {
+    "dev": "bun scripts/serve.ts",
+    "motion": "cd animations && npm install && npm run build",
+    "generate": "bun scripts/generate.ts",
+    "fmt": "bun fmt --no-script",
+    "fmt:check": "bun fmt --no-script --check",
+    "lint": "oxlint --deny-warnings scripts",
+    "check": "bun check --no-script",
+    "test": "bun test ./scripts",
+    "ci": "bun run fmt:check && bun run lint && bun run check && bun run test"
+  },
+  "dependencies": {
+    "linkedom": "0.18.15",
+    "turndown": "7.2.5",
+    "turndown-plugin-gfm": "1.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/turndown": "^5.0.5",
+    "oxlint": "1.95.0"
+  }
+}
