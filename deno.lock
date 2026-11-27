@@ -1,23 +1,10 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@std/assert@1.0.14": "1.0.14",
-    "jsr:@std/internal@^1.0.10": "1.0.14",
     "npm:@types/turndown@5.0.5": "5.0.5",
     "npm:linkedom@0.18.15": "0.18.15",
     "npm:turndown-plugin-gfm@1.0.2": "1.0.2",
     "npm:turndown@7.2.5": "7.2.5"
-  },
-  "jsr": {
-    "@std/assert@1.0.14": {
-      "integrity": "68d0d4a43b365abc927f45a9b85c639ea18a9fab96ad92281e493e4ed84abaa4",
-      "dependencies": [
-        "jsr:@std/internal"
-      ]
-    },
-    "@std/internal@1.0.14": {
-      "integrity": "291516b3d4c35024d6ffbc0a9df5bf4c64116e05b50012cf846710152d2ffdf7"
-    }
   },
   "npm": {
     "@mixmark-io/domino@2.2.0": {
@@ -147,7 +134,6 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/assert@1.0.14",
       "npm:linkedom@0.18.15",
       "npm:turndown-plugin-gfm@1.0.2",
       "npm:turndown@7.2.5"
