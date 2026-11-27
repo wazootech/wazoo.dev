@@ -330,11 +330,13 @@ The information is used only to show alerts and, when turned on, chat. Alerts an
 -   When on-screen chat is turned on, up to 30 recent chat messages (message and channel identifiers, display name, and text), in the same local files. They are removed when the tool next starts with chat turned on, or when chat is cleared or the stream session is reset.
 -   Message and subscriber identifiers, held in memory to avoid showing an alert twice, and gone when the tool stops.
 
+Saved alerts and chat messages are deleted automatically once they are 30 days old, whenever the tool, its dashboard, or its commands run. Because nothing runs while they are closed, the operator also clears saved alerts and chat messages at least every 30 days.
+
 The tool and its files use no cookies and no tracking technology.
 
 ## Removing access and data
 
-Access can be revoked at any time on Google's [security settings page](https://security.google.com/settings/security/permissions). After access is revoked, the operator deletes the stored tokens and alerts within 30 days. To ask for an alert or chat message that shows your name to be removed from local storage, or from a published recording or clip, contact us. We remove it within 7 days of your request.
+Access can be revoked at any time on Google's [security settings page](https://security.google.com/settings/security/permissions). After access is revoked, the operator deletes the stored tokens, alerts, and chat messages within 30 days. To ask for an alert or chat message that shows your name to be removed from local storage, or from a published recording or clip, contact us. We remove it within 7 days of your request.
 
 ## Contact
 
