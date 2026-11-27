@@ -101,12 +101,16 @@
           public, including their channel names and channel identifiers.
         </li>
       </ul>
-      <p>Chat messages that do not produce an alert are discarded.</p>
+      <p>
+        The channel owner can also choose to show live chat on the stream. Then
+        the display name and text of new chat messages are shown on screen.
+        Otherwise, chat messages that do not produce an alert are discarded.
+      </p>
 
       <h2>How it is used and shared</h2>
       <p>
-        The information is used only to show alerts. An alert displays a name and
-        its details on the live stream, so it also appears in recordings,
+        The information is used only to show alerts and, when turned on, chat. Alerts
+        and on-screen chat display names and their text on the live stream, so it also appears in recordings,
         archives, and clips of that stream. Wazoo Stream has no server of its
         own, runs no analytics or advertising, does not sell data, and sends
         nothing to anyone other than Google beyond what is shown on the stream.
@@ -125,6 +129,12 @@
           days.
         </li>
         <li>
+          When on-screen chat is turned on, up to 30 recent chat messages
+          (message and channel identifiers, display name, and text), in the same
+          local files. They are removed when the tool next starts with chat turned
+          on, or when chat is cleared or the stream session is reset.
+        </li>
+        <li>
           Message and subscriber identifiers, held in memory to avoid showing an
           alert twice, and gone when the tool stops.
         </li>
@@ -138,8 +148,8 @@
         Access can be revoked at any time on Google's
         <a href="https://security.google.com/settings/security/permissions">security
           settings page</a>. After access is revoked, the operator deletes the
-        stored tokens and alerts within 30 days. To ask for an alert that shows
-        your name to be removed from local storage, or from a published recording
+        stored tokens and alerts within 30 days. To ask for an alert or chat message
+        that shows your name to be removed from local storage, or from a published recording
         or clip, contact us. We remove it within 7 days of your request.
       </p>
 
