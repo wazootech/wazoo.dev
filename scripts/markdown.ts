@@ -63,8 +63,11 @@ export function readPage(html: string, path: string): PageArtifact {
   const main = document.querySelector("main");
   if (!main) throw new Error(`llms: no <main> in ${path}`);
   const title = document.querySelector("h1")?.textContent?.trim();
-  const description = document.querySelector('meta[name="description"]')
-    ?.getAttribute("content")?.replace(/\s+/g, " ").trim();
+  const description = document
+    .querySelector('meta[name="description"]')
+    ?.getAttribute("content")
+    ?.replace(/\s+/g, " ")
+    .trim();
   if (!title || !description) {
     throw new Error(`llms: ${path} needs an <h1> and a description`);
   }

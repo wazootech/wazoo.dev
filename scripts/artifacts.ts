@@ -44,8 +44,8 @@ function llmsTxt(pages: PageArtifact[]): string {
 }
 
 function sitemap(): string {
-  const urls = PAGES.map((page) =>
-    `  <url>\n    <loc>${absolute(page.path)}</loc>\n  </url>`
+  const urls = PAGES.map(
+    (page) => `  <url>\n    <loc>${absolute(page.path)}</loc>\n  </url>`,
   );
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
@@ -59,7 +59,7 @@ function sitemap(): string {
 /** Every generated file, keyed by its path from the repository root. */
 export function buildArtifacts(root: URL): Map<string, string> {
   const pages = PAGES.map((page) =>
-    readPage(readFileSync(new URL(page.source, root), "utf8"), page.path)
+    readPage(readFileSync(new URL(page.source, root), "utf8"), page.path),
   );
   const files = new Map<string, string>();
   for (const page of pages) {

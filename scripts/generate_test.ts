@@ -58,8 +58,5 @@ test("scripts, hidden content, and unfilled links are dropped", () => {
 });
 
 test("a page without a description fails loudly", () => {
-  throws(
-    () => readPage("<h1>Title</h1><main></main>", "/"),
-    /description/,
-  );
+  throws(() => readPage("<h1>Title</h1><main></main>", "/"), /description/);
 });
