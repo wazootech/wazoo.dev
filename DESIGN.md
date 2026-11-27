@@ -113,7 +113,7 @@ Animation at Wazoo is split into two modalities:
   (hub, hub edges, nodes) and Selection violet (orbit guides, side links, violet
   nodes), so no off-brand hues appear. The cursor drifts it with a two-layer
   parallax and carries a lens that sharpens the screen where you look. Players
-  without runtime effects draw the plain vector loop. Run `deno task motion` to
+  without runtime effects draw the plain vector loop. Run `bun run motion` to
   regenerate `motion/world.json` and `motion/player.js`. Playback makes no
   request to Clayzo. Under `prefers-reduced-motion` it draws a still frame
   instead of playing. Desktop only (1100px and up); it is removed on narrower

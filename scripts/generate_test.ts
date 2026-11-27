@@ -8,7 +8,7 @@ import { absolute, markdownPathFor, PAGES } from "./pages.ts";
 const root = new URL("../", import.meta.url);
 const read = (path: string) => readFileSync(new URL(path, root), "utf8");
 
-test("committed files match the pages (run `deno task generate`)", () => {
+test("committed files match the pages (run `bun run generate`)", () => {
   for (const [path, content] of buildArtifacts(root)) {
     strictEqual(read(path), content, `${path} is out of date`);
   }

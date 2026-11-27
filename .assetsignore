@@ -15,7 +15,11 @@ animations
 # Generated Markdown versions of the pages are part of the site.
 !index.md
 scripts
-deno.json
-deno.lock
+package.json
+bun.lock
+bunfig.toml
+tsconfig.json
+.oxlintrc.json
+.prettierignore
 wrangler.jsonc
 CNAME

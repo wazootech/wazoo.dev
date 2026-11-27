@@ -4,13 +4,13 @@ You found Wazoo's official company website.
 
 ## Development
 
-1\. Install the Deno toolchain:
-<https://deno.land/manual/getting_started/installation>
+1\. Install Bun 1.4.5 or newer: <https://bun.sh>
 
 2\. Start the project:
 
 ```sh
-deno -A jsr:@std/http/file-server
+bun install
+bun run dev
 ```
 
 This will serve the project directory.
@@ -21,7 +21,7 @@ This will serve the project directory.
 generated from the HTML. After editing a page, run:
 
 ```sh
-deno task generate
+bun run generate
 ```
 
 CI fails if they are out of date. The page list is in `scripts/pages.ts`.
